@@ -1,10 +1,12 @@
 package view;
 
+import controller.UserController;
 import util.Util;
 
 public class Engine {
 	
 	Util u = Util.getInstance();
+	UserController uc = UserController.getInstance();
 
 	public Engine() {
 		// TODO Auto-generated constructor stub
@@ -25,7 +27,7 @@ public class Engine {
 				
 				break;
 			case 2:
-				
+				uc.register();
 				break;
 			case 3:
 	
