@@ -1,10 +1,12 @@
 package main;
 
+import view.Engine;
+
 public class Main {
 
 	public Main() {
 		// TODO Auto-generated constructor stub
-		System.out.println("lolol");
+		new Engine();
 	}
 
 	public static void main(String[] args) {
