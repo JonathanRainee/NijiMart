@@ -16,7 +16,8 @@ public class Engine {
 		// TODO Auto-generated constructor stub
 		int opt = -9;
 		do {
-			u.cls();
+			uc.initUser();
+//			u.cls();
 			u.printTab("NijiMart");
 			u.printTab("========");
 			u.printTab("1. Login");

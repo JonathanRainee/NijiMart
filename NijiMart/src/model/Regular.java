@@ -19,6 +19,12 @@ public class Regular extends User{
 		this.loyaltyPoint = loyaltyPoint;
 		// TODO Auto-generated constructor stub
 	}
+	
+	public Regular(String username, String password, int point, int loyaltyPoint) {
+		super(username, password, point);
+		this.loyaltyPoint = loyaltyPoint;
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public void getCurrPoint() {

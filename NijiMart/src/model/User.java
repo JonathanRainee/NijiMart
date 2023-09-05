@@ -41,6 +41,14 @@ public class User {
 		this.point = point;
 		this.cart = cart;
 	}
+	
+	public User(String username, String password, int point) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.point = point;
+	}
+	
 	public void addProduct() {
 		
 	}

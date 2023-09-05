@@ -1,6 +1,9 @@
 package controller;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -62,7 +65,10 @@ public class UserController {
 			Engine.users.add(reg);					
 			writeFile(reg);
 		}
-		
+		userCount++;
+	}
+	
+	public void login() {
 		
 	}
 	
@@ -76,7 +82,7 @@ public class UserController {
 					}
 				}
 				writer.write(user.getUsername()+","+user.getPassword()+","+user.getPoint()+","+itemIDS+"\n");
-			}else {
+			}else if(user instanceof Regular) {
 				String itemIDS = "-";
 				if(!user.getCart().isEmpty()) {
 					for (Product p : user.getCart()) {
@@ -90,8 +96,29 @@ public class UserController {
         }
 	}
 	
-	public void login() {
-		
+	public void initUser() {
+		try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            
+            while ((line = br.readLine()) != null) {
+            	if (!line.trim().isEmpty()) {
+            		String[] data = line.split(",");
+            		int fieldCount = data.length;
+            		String username = data[0].trim();
+            		String password = data[1].trim();
+            		int point = Integer.parseInt(data[2].trim());
+            		String cart = data[3].trim();
+            		if(fieldCount > 4) {
+            			int loyaltyPoint = Integer.parseInt(data[4].trim());
+            			Engine.users.add(new Regular(username, password, point, loyaltyPoint));
+            		}else {
+            			Engine.users.add(new Admin(username, password, point));          	
+            		}            		
+            	}
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 	}
 
 }
