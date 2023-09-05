@@ -1,7 +1,11 @@
 package controller;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
+import model.Admin;
 import model.Product;
 import model.Regular;
 import model.User;
@@ -10,6 +14,8 @@ import view.Engine;
 
 public class UserController {
 	
+	private int userCount = 0;
+	private String fileName = "users.csv";
 	private static UserController instance;
 	private Util u = Util.getInstance();
 
@@ -32,7 +38,7 @@ public class UserController {
 			u.printNormal("Input your username (username length has to be greater than 5 and less than 20 characters || press 0 to cancel): ");
 			username = u.nextLine();
 			if (username.equals("0")) {
-				break;x
+				break;
 			}
 		} while (username.length() < 5 || username.length() > 20);
 		
@@ -45,7 +51,25 @@ public class UserController {
 		} while (password.length() < 8 || password.length() > 20 || !u.isAlNum(password));
 		
 		ArrayList<Product> cart = new ArrayList<>();
-		Engine.users.add(new Regular(username, password, cart, 0));		
+		
+		if(userCount == 0) {
+			Engine.users.add(new Admin(username, password, 0, cart));
+		}else {
+			Engine.users.add(new Regular(username, password, 0, cart, 0));					
+		}
+		
+		
+		
+	}
+	
+	private void writeFile(Regular user) {
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
+            // Append the new data to the CSV file
+//            writer.write(user.getUsername(), user.getPassword());
+            System.out.println("Data appended successfully.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 	}
 	
 	public void login() {

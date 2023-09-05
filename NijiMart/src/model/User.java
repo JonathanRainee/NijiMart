@@ -34,13 +34,13 @@ public class User {
 		this.point = point;
 	}
 	
-	public User(String username, String password, ArrayList<Product> cart) {
+	public User(String username, String password, int point, ArrayList<Product> cart) {
 		super();
 		this.username = username;
 		this.password = password;
+		this.point = point;
 		this.cart = cart;
 	}
-	
 	public void addProduct() {
 		
 	}
