@@ -1,12 +1,16 @@
 package view;
 
+import java.util.ArrayList;
+
 import controller.UserController;
+import model.User;
 import util.Util;
 
 public class Engine {
 	
 	Util u = Util.getInstance();
 	UserController uc = UserController.getInstance();
+	public static ArrayList<User> users = new ArrayList<>();
 
 	public Engine() {
 		// TODO Auto-generated constructor stub
@@ -24,9 +28,11 @@ public class Engine {
 			
 			switch (opt) {
 			case 1:
+				u.cls();
 				
 				break;
 			case 2:
+				u.cls();
 				uc.register();
 				break;
 			case 3:

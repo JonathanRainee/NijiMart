@@ -39,5 +39,18 @@ public class Util {
 			System.out.println("\n\n");
 		}
 	}
+	
+	public boolean isAlNum(String pass) {
+		if (pass == null || pass.isEmpty()) {
+            return false;
+        }
+        
+        for (char c : pass.toCharArray()) {
+            if (!Character.isLetterOrDigit(c)) {
+                return false;
+            }
+        }
+        return true;
+	}
 
 }
