@@ -39,7 +39,7 @@ public class Engine {
 	
 				break;
 			}
-		} while (opt < 1 || opt > 3);
+		} while (opt != 3);
 	}
 
 }

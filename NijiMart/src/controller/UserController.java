@@ -31,7 +31,8 @@ public class UserController {
 	}
 	
 	public void register() {
-		u.printTab("Login");
+		u.printTab("Register");
+		u.printTab("========");
 		String username;
 		String password;
 		do {
@@ -53,20 +54,37 @@ public class UserController {
 		ArrayList<Product> cart = new ArrayList<>();
 		
 		if(userCount == 0) {
-			Engine.users.add(new Admin(username, password, 0, cart));
+			Admin adm = new Admin(username, password, 0, cart);
+			Engine.users.add(adm);
+			writeFile(adm);
 		}else {
-			Engine.users.add(new Regular(username, password, 0, cart, 0));					
+			Regular reg = new Regular(username, password, 0, cart, 0);
+			Engine.users.add(reg);					
+			writeFile(reg);
 		}
-		
 		
 		
 	}
 	
-	private void writeFile(Regular user) {
+	private void writeFile(User user) {
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
-            // Append the new data to the CSV file
-//            writer.write(user.getUsername(), user.getPassword());
-            System.out.println("Data appended successfully.");
+			if(user instanceof Admin) {
+				String itemIDS = "-";
+				if(!user.getCart().isEmpty()) {
+					for (Product p : user.getCart()) {
+						itemIDS += p.getProductID();
+					}
+				}
+				writer.write(user.getUsername()+","+user.getPassword()+","+user.getPoint()+","+itemIDS+"\n");
+			}else {
+				String itemIDS = "-";
+				if(!user.getCart().isEmpty()) {
+					for (Product p : user.getCart()) {
+						itemIDS += p.getProductID();
+					}
+				}
+				writer.write(user.getUsername()+","+user.getPassword()+","+user.getPoint()+","+itemIDS+","+((Regular)user).getLoyaltyPoint()+"\n");
+			}
         } catch (IOException e) {
             e.printStackTrace();
         }
