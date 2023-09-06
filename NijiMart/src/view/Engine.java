@@ -3,6 +3,7 @@ package view;
 import java.util.ArrayList;
 
 import controller.UserController;
+import model.Product;
 import model.User;
 import util.Util;
 
@@ -13,7 +14,7 @@ public class Engine {
 	UserView uv = UserView.getInstance();
 	public static User currUser = null;
 	public static ArrayList<User> users = new ArrayList<>();
-	
+	public static ArrayList<Product> producst = new ArrayList<>();
 
 	public Engine() {
 		// TODO Auto-generated constructor stub
