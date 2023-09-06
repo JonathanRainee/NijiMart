@@ -38,16 +38,24 @@ public class UserController {
 		u.printTab("========");
 		String username;
 		String password;
+		boolean unique;
 		do {
 			u.printNormal("Input your username (username length has to be greater than 5 and less than 20 characters || press 0 to cancel): ");
 			username = u.nextLine();
 			if (username.equals("0")) {
 				break;
 			}
-		} while (username.length() < 5 || username.length() > 20);
+			unique = isUnique(username);
+			if(username.length() < 5 || username.length() > 20) {
+				u.printTab("Username length has to be greater than 5 and less than 20 characters");
+			}
+			if(unique) {
+				u.printTab("Username must be unique");
+			}
+		} while (username.length() < 5 || username.length() > 20 || unique);
 		
 		do {
-			u.printNormal("Input your password (password length has to be greater than 8 and less than 20 characters and have to be alphanumeric || press 0 to cancel): ");
+			u.printNormal("Input your password (password length has to be greater than 8 and less than 20 characters and have to be alphanumeric and have to be unique || press 0 to cancel): ");
 			password = u.nextLine();
 			if (password.equals("0")) {
 				break;
@@ -69,7 +77,39 @@ public class UserController {
 	}
 	
 	public void login() {
-		
+		u.printTab("Login");
+		u.printTab("========");
+		String username;
+		String password;
+		boolean found = false;
+		do {
+			u.printNormal("Input your username: ");
+			username = u.nextLine();
+			u.printNormal("Input your password: ");
+			password = u.nextLine();
+			found = searchUser(username, password);
+			if(!found) {
+				u.printTab("Please input the right credential!");
+			}
+		} while (!found);
+	}
+	
+	private boolean searchUser(String username, String password) {
+		for (User u : Engine.users) {
+			if(username.equals(u.getUsername()) && password.equals(u.getPassword())) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	private boolean isUnique(String username) {
+		for (User u : Engine.users) {
+			if(username.equals(u.getUsername())) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	private void writeFile(User user) {

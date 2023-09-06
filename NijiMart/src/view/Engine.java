@@ -30,7 +30,7 @@ public class Engine {
 			switch (opt) {
 			case 1:
 				u.cls();
-				
+				uc.login();
 				break;
 			case 2:
 				u.cls();
