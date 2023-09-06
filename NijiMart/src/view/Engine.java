@@ -10,14 +10,17 @@ public class Engine {
 	
 	Util u = Util.getInstance();
 	UserController uc = UserController.getInstance();
+	UserView uv = UserView.getInstance();
+	public static User currUser = null;
 	public static ArrayList<User> users = new ArrayList<>();
+	
 
 	public Engine() {
 		// TODO Auto-generated constructor stub
 		int opt = -9;
 		do {
 			uc.initUser();
-//			u.cls();
+			u.cls();
 			u.printTab("NijiMart");
 			u.printTab("========");
 			u.printTab("1. Login");
@@ -30,11 +33,11 @@ public class Engine {
 			switch (opt) {
 			case 1:
 				u.cls();
-				uc.login();
+				uv.login();
 				break;
 			case 2:
 				u.cls();
-				uc.register();
+				uv.register();
 				break;
 			case 3:
 	
