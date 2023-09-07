@@ -141,7 +141,64 @@ public class ProductView {
 	}
 	
 	public void addShirt() {
+		String color;
+		String size;
+		String material;
+		String sleeveLength;
+		String collarType;
+		String fabricPattern;
 		
+		addProducts(); 
+		
+		do {
+			u.printNormal("Input shirt color (shirt color has to be either \"black\" / \"white\" / \"pink\" (case sensitive)): ");
+			color = u.nextLine();
+			if(!color.equals("black") && !color.equals("white") && !color.equals("pink")) {
+				u.printTab("Shirt color has to be either \"black\" / \"white\" / \"pink\"!");
+			}
+		} while (!color.equals("black") && !color.equals("white") && !color.equals("pink"));
+		
+		do {
+			u.printNormal("Input shirt size (shirt color has to be either \"s\" / \"m\" / \"l\" (case insensitive)): ");
+			size = u.nextLine();
+			if(!size.equalsIgnoreCase("s") && !size.equalsIgnoreCase("m") && !size.equalsIgnoreCase("l")) {
+				u.printTab("Shirt color has to be either \"s\\\" / \"m\" / \"l\"!");
+			}
+		} while (!size.equalsIgnoreCase("s") && !size.equalsIgnoreCase("m") && !size.equalsIgnoreCase("l"));
+		
+		do {
+			u.printNormal("Input shirt material (shirt material has to be either \"cotton\" / \"fleece\" (case sensitive)): ");
+			material = u.nextLine();
+			if(!material.equals("cotton") && !material.equals("fleece")) {
+				u.printTab("Shirt material has to be either \"cotton\" / \"fleece\"!");
+			}
+		} while (!material.equals("cotton") && !material.equals("fleece"));
+		
+		do {
+			u.printNormal("Input shirt sleeve length (shirt sleeve length has to be either \"short\" / \"long\" (case insensitive)): ");
+			sleeveLength = u.nextLine();
+			if(!sleeveLength.equalsIgnoreCase("short") && !sleeveLength.equalsIgnoreCase("long")) {
+				u.printTab("Shirt color has to be either \"short\" / \"long\"!");
+			}
+		} while (!sleeveLength.equalsIgnoreCase("short") && !sleeveLength.equalsIgnoreCase("long"));
+		
+		do {
+			u.printNormal("Input shirt collar type (shirt collar type has to be either \"turtle neck\" / \"crew neck\" (case sensitive)): ");
+			collarType = u.nextLine();
+			if(!collarType.equals("turtle neck") && !collarType.equals("crew neck")) {
+				u.printTab("Shirt collar type has to be either \"turtle neck\" / \"crew neck\"!");
+			}
+		} while (!collarType.equals("crew neck") && !collarType.equals("turtle neck"));
+		
+		do {
+			u.printNormal("Input shirt fabric pattern (shirt fabric pattern has to be either \"polka dot\" / \"checkered\" / \\\"strip\\\" (case insensitive)): ");
+			fabricPattern = u.nextLine();
+			if(!fabricPattern.equalsIgnoreCase("polka dot") && !fabricPattern.equalsIgnoreCase("checkered") && !fabricPattern.equalsIgnoreCase("strip")) {
+				u.printTab("Shirt fabric pattern  has to be either \"polka dot\" / \"checkered\" / \"strip\"!");
+			}
+		} while (!fabricPattern.equalsIgnoreCase("polka dot") && !fabricPattern.equalsIgnoreCase("checkered") && !fabricPattern.equalsIgnoreCase("strip"));
+		
+		productAdded();
 	}
 	
 	public void addBook() {
