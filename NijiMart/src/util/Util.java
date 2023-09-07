@@ -34,6 +34,10 @@ public class Util {
 		return scan.nextInt();
 	}
 	
+	public float nextFloat() {
+		return scan.nextFloat();
+	}
+	
 	public void cls() {
 		for (int i = 0; i < 30; i++) {
 			System.out.println("\n\n");
