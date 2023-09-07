@@ -35,7 +35,7 @@ public class ProductView {
 			u.printTab("2. Shirts");
 			u.printTab("3. Books");
 			u.printTab("4. Cancel");			
-			u.printTab(">> ");
+			u.printNormal(">> ");
 			opt = u.nextInt();
 			u.nextLine();
 			
@@ -53,9 +53,16 @@ public class ProductView {
 		} while (opt != 4);
 	}
 	
+	public void productAdded() {
+		u.printTab("Product added sucessfully!");
+		u.printTab("Press enter to continue...");
+		u.nextLine();
+	}
+	
 	public void addProducts() {
+		u.cls();
 		do {
-			u.printTab("Input product name (product name length has to be greater than 5 and less than 25 characters and must be unique): ");
+			u.printNormal("Input product name (product name length has to be greater than 5 and less than 25 characters and must be unique): ");
 			name = u.nextLine();
 			if(name.length() < 5  || name.length() > 25) {
 				u.printTab("Product name length has to be greater than 5 and less than 25 characters!");
@@ -63,15 +70,16 @@ public class ProductView {
 		} while (name.length() < 5  || name.length() > 25);
 		
 		do {
-			u.printTab("Input product price (product price has to be greater than 10000 and less than 120000): ");
+			u.printNormal("Input product price (product price has to be greater than 10000 and less than 120000): ");
 			price = u.nextInt();
-			if(price < 10000  || price > 120000) {
-				u.printTab("Product price has to be greater than 10000 and less than 120000 characters!");
+			u.nextLine();
+			if(price <= 10000  || price >= 120000) {
+				u.printTab("Product price has to be greater than 10000 and less than 120000!");
 			}
-		} while (price < 10000  || price > 120000);
+		} while (price <= 10000  || price >= 120000);
 		
 		do {
-			u.printTab("Input product description (product description length has to be greater than 10 and less than 30 characters): ");
+			u.printNormal("Input product description (product description length has to be greater than 10 and less than 30 characters): ");
 			description = u.nextLine();
 			if(description.length() < 10 || description.length() > 30) {
 				u.printTab("Product description length has to be greater than 10 and less than 30 characters!");
@@ -89,13 +97,47 @@ public class ProductView {
 		addProducts();
 		
 		do {
-			u.printTab("Input laptop screen size (laptop screen size has to be greater than 12.5 and less than 18.5): ");
+			u.printNormal("Input laptop screen size (laptop screen size has to be greater than 12.5 and less than 18.5): ");
 			screenSize = u.nextFloat();
-			if(screenSize < 12.5  || screenSize < 18.5) {
+			if(screenSize <= 12.5  || screenSize >= 18.5) {
 				u.printTab("Laptop screen size has to be greater than 12.5 and less than 18.5!");
 			}
-		} while (screenSize < 12.5  || screenSize < 18.5);
+		} while (screenSize <= 12.5  || screenSize >= 18.5);
 		
+		do {
+			u.printNormal("Input laptop RAM (laptop RAM has to be greater than or equal to 4 and less than or equal to 64): ");
+			RAM = u.nextInt();
+			u.nextLine();
+			if(RAM < 4  || RAM > 64) {
+				u.printTab("Laptop RAM has to be greater than or equal to 4 and less than or equal to 64!");
+			}
+		} while (RAM < 4  || RAM > 64);
+		
+		do {
+			u.printNormal("Input laptop processor (laptop processor has to be either \"ontel\" or \"SLC\" (case sensitive)): ");
+			processor = u.nextLine();
+			if(!processor.equals("ontel") && !processor.equals("SLC")) {
+				u.printTab("Laptop RAM has to be either \"ontel\" or \"SLC\"!");
+			}
+		} while (!processor.equals("ontel") && !processor.equals("SLC"));
+		
+		do {
+			u.printNormal("Input laptop warranty period (laptop warranty period has to be greater than 1 or equal to and less than or equal to 5): ");
+			warrantyPeriod = u.nextInt();
+			u.nextLine();
+			if(warrantyPeriod < 1 || warrantyPeriod > 5) {
+				u.printTab("Laptop warranty period has to be greater than or equal to 0 and less than or equal to 5!");
+			}
+		} while (warrantyPeriod < 1 || warrantyPeriod > 5);
+		
+		do {
+			u.printNormal("Input laptop operating system  (laptop operating system has to be \"penguin\" or \"jendela\" (case insensitive)): ");
+			operatingSystem = u.nextLine();
+			if(!operatingSystem.equalsIgnoreCase("penguin") && !operatingSystem.equalsIgnoreCase("jendela")) {
+				u.printTab("Laptop operating system has to be \"penguin\" or \"jendela\"");
+			}
+		} while (!operatingSystem.equalsIgnoreCase("penguin") && !operatingSystem.equalsIgnoreCase("jendela"));
+		productAdded();
 	}
 	
 	public void addShirt() {

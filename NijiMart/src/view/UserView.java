@@ -12,6 +12,7 @@ import util.Util;
 public class UserView {
 	
 	private static UserView instance;
+	private ProductView pv = ProductView.getInstance();
 	private UserController uc = UserController.getInstance();
 	private Util u = Util.getInstance();
 	
@@ -60,7 +61,7 @@ public class UserView {
 			u.cls();
 			u.printTab("Register");
 			u.printTab("========");
-			u.printNormal("Input your username (username length has to be greater than 5 and less than 20 characters || press 0 to cancel): ");
+			u.printNormal("Input your username (username length has to be greater than 5 and less than 20 characters and must be unique|| press 0 to cancel): ");
 			username = u.nextLine();
 			if (username.equals("0")) {
 				break;
@@ -139,7 +140,7 @@ public class UserView {
 			u.nextLine();
 			switch (menuOpt) {
 			case 1:
-				
+				pv.addProduct();
 				break;
 			case 2:
 				
