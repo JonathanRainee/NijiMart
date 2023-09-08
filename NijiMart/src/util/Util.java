@@ -123,4 +123,28 @@ public class Util {
 		}
 		return false;
 	}
+	
+	public boolean StartsWith(String a, String b, String value) {
+		boolean valid;
+		if(!value.startsWith(a) && !value.startsWith(b)) {
+			return false;
+		}else if(value.startsWith(a) || value.startsWith(b)){
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean StartsWithIgnoreCase(String a, String b, String value) {
+		boolean valid;
+		String aNorm = a.toLowerCase();
+		String bNorm = b.toLowerCase();
+		String valNorm = value.toLowerCase();
+		if(!valNorm.startsWith(aNorm) && !value.startsWith(bNorm)) {
+			return false;
+		}else if(value.startsWith(aNorm) || value.startsWith(bNorm)){
+			return true;
+		}			
+		
+		return false;
+	}
 }
