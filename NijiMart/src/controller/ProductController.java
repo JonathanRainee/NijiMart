@@ -11,9 +11,11 @@ import model.Novel;
 import model.Product;
 import model.Regular;
 import model.Shirt;
+import util.Util;
 
 public class ProductController {
 	
+	Util util = Util.getInstance();
 	private String fileName = "products.csv";
 	private static ProductController instance;
 	public static int productID = 1;
@@ -46,6 +48,18 @@ public class ProductController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+	}
+	
+	public String generateID(String type) {
+		String productID = "";
+		if(util.equalTo(type, "laptop")) {
+			productID = "L"+productID;
+		}else if(util.equalTo(type, "shirt")) {
+			productID = "S"+productID;
+		}else if(util.equalTo(type, "novel")) {
+			productID = "N"+productID;
+		}
+		return productID;
 	}
 	
 	

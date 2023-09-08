@@ -25,7 +25,7 @@ public class Books extends Product{
 		this.publicationYear = publicationYear;
 	}
 	
-	public Books(int productID, String name, int price, String description, String author, String genre,
+	public Books(String productID, String name, int price, String description, String author, String genre,
 			int publicationYear) {
 		super(productID, name, price, description);
 		this.author = author;

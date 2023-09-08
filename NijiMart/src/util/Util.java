@@ -84,6 +84,16 @@ public class Util {
 		}
 	}
 	
+	public boolean equalTo(String a, String value) {
+		boolean valid;
+		if(!value.equals(a)) {
+			return false;
+		}else if(value.equals(a)){
+			return true;
+		}
+		return false;
+	}
+	
 	public boolean equalTo(String a, String b, String value) {
 		boolean valid;
 		if(!value.equals(a) && !value.equals(b)) {

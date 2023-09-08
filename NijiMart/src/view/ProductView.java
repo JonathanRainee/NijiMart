@@ -143,7 +143,7 @@ public class ProductView {
 			}
 		} while (!u.equalToIgnoreCase("penguin", "jendela", operatingSystem));
 		
-		Laptop laptop = new Laptop(ProductController.productID, name, price, description, screenSize, RAM, processor, warrantyPeriod, operatingSystem);
+		Laptop laptop = new Laptop(pc.generateID("laptop"), name, price, description, screenSize, RAM, processor, warrantyPeriod, operatingSystem);
 		pc.addProduct(laptop);
 		productAdded();
 	}
@@ -207,7 +207,7 @@ public class ProductView {
 		} while (!u.equalToIgnoreCase("polka dot", "checkered", "strip", fabricPattern));
 		
 		
-		Shirt shirt = new Shirt(ProductController.productID, name, price, description, size, color, material, sleeveLength, collarType, fabricPattern);
+		Shirt shirt = new Shirt(pc.generateID("shirt"), name, price, description, size, color, material, sleeveLength, collarType, fabricPattern);
 		pc.addProduct(shirt);
 		productAdded();
 	}
@@ -272,7 +272,7 @@ public class ProductView {
 			}
 		} while (!u.gtAndlt(1, 5, suspenseLevel));
 		
-		Novel novel = new Novel(ProductController.productID, name, price, description, author, genre, publicationYear, crimeType, detective, suspenseLevel);
+		Novel novel = new Novel(pc.generateID("novel"), name, price, description, author, genre, publicationYear, crimeType, detective, suspenseLevel);
 		pc.addProduct(novel);
 		productAdded();
 		

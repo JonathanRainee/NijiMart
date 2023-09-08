@@ -10,7 +10,7 @@ public class Laptop extends Electronics{
 	public void setOperatingSystem(String operatingSystem) {
 		this.operatingSystem = operatingSystem;
 	}
-	public Laptop(int productID, String name, int price, String description, float screenSize, int RAM,
+	public Laptop(String productID, String name, int price, String description, float screenSize, int RAM,
 			String processor, int warrantyPeriod,  String operatingSystem) {
 		super(productID, name, price, description, screenSize, RAM, processor, warrantyPeriod);
 		// TODO Auto-generated constructor stub

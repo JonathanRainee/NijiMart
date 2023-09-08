@@ -25,7 +25,7 @@ public class Novel extends Books{
 		this.suspenseLevel = suspenseLevel;
 	}
 	
-	public Novel(int productID, String name, int price, String description, String author, String genre,
+	public Novel(String productID, String name, int price, String description, String author, String genre,
 			int publicationYear, String crimeType, String detective, int suspenseLevel) {
 		super(productID, name, price, description, author, genre, publicationYear);
 		this.crimeType = crimeType;

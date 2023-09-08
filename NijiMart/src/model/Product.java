@@ -2,7 +2,7 @@ package model;
 
 public class Product {
 	
-	private int productID;
+	private String productID;
 	private String name;
 	private int price;
 	private String description;
@@ -12,10 +12,10 @@ public class Product {
 	public String getName() {
 		return name;
 	}
-	public int getProductID() {
+	public String getProductID() {
 		return productID;
 	}
-	public void setProductID(int productID) {
+	public void setProductID(String productID) {
 		this.productID = productID;
 	}
 	public void setName(String name) {
@@ -40,7 +40,7 @@ public class Product {
 //		this.type = type;
 //	}
 	
-	public Product(int productID, String name, int price, String description) {
+	public Product(String productID, String name, int price, String description) {
 		super();
 		this.productID = productID;
 		this.name = name;
