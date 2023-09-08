@@ -1,11 +1,13 @@
 package view;
 
+import controller.ProductController;
 import util.Util;
 
 public class ProductView {
 
 	private static ProductView instance;
 	private Util u = Util.getInstance();
+	private ProductController pc = ProductController.getInstance();
 	
 	private int productID;
 	private String name;
@@ -64,27 +66,27 @@ public class ProductView {
 		do {
 			u.printNormal("Input product name (product name length has to be greater than 5 and less than 25 characters and must be unique): ");
 			name = u.nextLine();
-			if(name.length() < 5  || name.length() > 25) {
+			if(!u.gtAndlt(5, 25, name.length())) {
 				u.printTab("Product name length has to be greater than 5 and less than 25 characters!");
 			}
-		} while (name.length() < 5  || name.length() > 25);
+		} while (!u.gtAndlt(5, 25, name.length()));
 		
 		do {
 			u.printNormal("Input product price (product price has to be greater than 10000 and less than 120000): ");
 			price = u.nextInt();
 			u.nextLine();
-			if(price <= 10000  || price >= 120000) {
+			if(!u.gtAndlt(10000, 120000, price)) {
 				u.printTab("Product price has to be greater than 10000 and less than 120000!");
 			}
-		} while (price <= 10000  || price >= 120000);
+		} while (!u.gtAndlt(10000, 120000, price));
 		
 		do {
 			u.printNormal("Input product description (product description length has to be greater than 10 and less than 30 characters): ");
 			description = u.nextLine();
-			if(description.length() < 10 || description.length() > 30) {
+			if(!u.gtAndlt(10, 25, description.length())) {
 				u.printTab("Product description length has to be greater than 10 and less than 30 characters!");
 			}
-		} while (description.length() < 10 || description.length() > 30);
+		} while (!u.gtAndlt(5, 25, description.length()));
 	}
 	
 	public void addLaptop() {
@@ -99,44 +101,44 @@ public class ProductView {
 		do {
 			u.printNormal("Input laptop screen size (laptop screen size has to be greater than 12.5 and less than 18.5): ");
 			screenSize = u.nextFloat();
-			if(screenSize <= 12.5  || screenSize >= 18.5) {
+			if(!u.gtAndlt(12.5f, 18.5f, screenSize)) {
 				u.printTab("Laptop screen size has to be greater than 12.5 and less than 18.5!");
 			}
-		} while (screenSize <= 12.5  || screenSize >= 18.5);
+		} while (!u.gtAndlt(12.5f, 18.5f, screenSize));
 		
 		do {
 			u.printNormal("Input laptop RAM (laptop RAM has to be greater than or equal to 4 and less than or equal to 64): ");
 			RAM = u.nextInt();
 			u.nextLine();
-			if(RAM < 4  || RAM > 64) {
+			if(!u.gtAndlt(4, 64, RAM)) {
 				u.printTab("Laptop RAM has to be greater than or equal to 4 and less than or equal to 64!");
 			}
-		} while (RAM < 4  || RAM > 64);
+		} while (!u.gtAndlt(4, 64, RAM));
 		
 		do {
 			u.printNormal("Input laptop processor (laptop processor has to be either \"ontel\" or \"SLC\" (case sensitive)): ");
 			processor = u.nextLine();
-			if(!processor.equals("ontel") && !processor.equals("SLC")) {
+			if(!u.equalTo("ontel", "SLC", processor)) {
 				u.printTab("Laptop RAM has to be either \"ontel\" or \"SLC\"!");
 			}
-		} while (!processor.equals("ontel") && !processor.equals("SLC"));
+		} while (!u.equalTo("ontel", "SLC", processor));
 		
 		do {
 			u.printNormal("Input laptop warranty period (laptop warranty period has to be greater than 1 or equal to and less than or equal to 5): ");
 			warrantyPeriod = u.nextInt();
 			u.nextLine();
-			if(warrantyPeriod < 1 || warrantyPeriod > 5) {
-				u.printTab("Laptop warranty period has to be greater than or equal to 0 and less than or equal to 5!");
+			if(!u.gtAndlt(1, 5, warrantyPeriod)) {
+				u.printTab("Laptop warranty period has to be greater than or equal to 1 and less than or equal to 5!");
 			}
-		} while (warrantyPeriod < 1 || warrantyPeriod > 5);
+		} while (!u.gtAndlt(1, 5, warrantyPeriod));
 		
 		do {
 			u.printNormal("Input laptop operating system  (laptop operating system has to be \"penguin\" or \"jendela\" (case insensitive)): ");
 			operatingSystem = u.nextLine();
-			if(!operatingSystem.equalsIgnoreCase("penguin") && !operatingSystem.equalsIgnoreCase("jendela")) {
+			if(!u.equalToIgnoreCase("penguin", "jendela", operatingSystem)) {
 				u.printTab("Laptop operating system has to be \"penguin\" or \"jendela\"");
 			}
-		} while (!operatingSystem.equalsIgnoreCase("penguin") && !operatingSystem.equalsIgnoreCase("jendela"));
+		} while (!u.equalToIgnoreCase("penguin", "jendela", operatingSystem));
 		productAdded();
 	}
 	
@@ -153,55 +155,60 @@ public class ProductView {
 		do {
 			u.printNormal("Input shirt color (shirt color has to be either \"black\" / \"white\" / \"pink\" (case sensitive)): ");
 			color = u.nextLine();
-			if(!color.equals("black") && !color.equals("white") && !color.equals("pink")) {
+			if(!u.equalTo("black", "white", "pink", color)) {
 				u.printTab("Shirt color has to be either \"black\" / \"white\" / \"pink\"!");
 			}
-		} while (!color.equals("black") && !color.equals("white") && !color.equals("pink"));
+		} while (!u.equalTo("black", "white", "pink", color));
 		
 		do {
 			u.printNormal("Input shirt size (shirt color has to be either \"s\" / \"m\" / \"l\" (case insensitive)): ");
 			size = u.nextLine();
-			if(!size.equalsIgnoreCase("s") && !size.equalsIgnoreCase("m") && !size.equalsIgnoreCase("l")) {
-				u.printTab("Shirt color has to be either \"s\\\" / \"m\" / \"l\"!");
+			if(!u.equalToIgnoreCase("s", "m", "l", size)) {
+				u.printTab("Shirt color has to be either \"s\" / \"m\" / \"l\"!");
 			}
-		} while (!size.equalsIgnoreCase("s") && !size.equalsIgnoreCase("m") && !size.equalsIgnoreCase("l"));
+		} while (!u.equalToIgnoreCase("s", "m", "l", size));
 		
 		do {
 			u.printNormal("Input shirt material (shirt material has to be either \"cotton\" / \"fleece\" (case sensitive)): ");
 			material = u.nextLine();
-			if(!material.equals("cotton") && !material.equals("fleece")) {
+			if(!u.equalTo("cotton", "fleece", material)) {
 				u.printTab("Shirt material has to be either \"cotton\" / \"fleece\"!");
 			}
-		} while (!material.equals("cotton") && !material.equals("fleece"));
+		} while (!u.equalTo("cotton", "fleece", material));
 		
 		do {
 			u.printNormal("Input shirt sleeve length (shirt sleeve length has to be either \"short\" / \"long\" (case insensitive)): ");
 			sleeveLength = u.nextLine();
-			if(!sleeveLength.equalsIgnoreCase("short") && !sleeveLength.equalsIgnoreCase("long")) {
+			if(!u.equalToIgnoreCase("short", "long", sleeveLength)) {
 				u.printTab("Shirt color has to be either \"short\" / \"long\"!");
 			}
-		} while (!sleeveLength.equalsIgnoreCase("short") && !sleeveLength.equalsIgnoreCase("long"));
+		} while (!u.equalToIgnoreCase("short", "long", sleeveLength));
 		
 		do {
 			u.printNormal("Input shirt collar type (shirt collar type has to be either \"turtle neck\" / \"crew neck\" (case sensitive)): ");
 			collarType = u.nextLine();
-			if(!collarType.equals("turtle neck") && !collarType.equals("crew neck")) {
+			if(!u.equalToIgnoreCase("turtle neck", "crew neck", collarType)) {
 				u.printTab("Shirt collar type has to be either \"turtle neck\" / \"crew neck\"!");
 			}
-		} while (!collarType.equals("crew neck") && !collarType.equals("turtle neck"));
+		} while (!u.equalToIgnoreCase("turtle neck", "crew neck", collarType));
 		
 		do {
-			u.printNormal("Input shirt fabric pattern (shirt fabric pattern has to be either \"polka dot\" / \"checkered\" / \\\"strip\\\" (case insensitive)): ");
+			u.printNormal("Input shirt fabric pattern (shirt fabric pattern has to be either \"polka dot\" / \"checkered\" / \"strip\" (case insensitive)): ");
 			fabricPattern = u.nextLine();
-			if(!fabricPattern.equalsIgnoreCase("polka dot") && !fabricPattern.equalsIgnoreCase("checkered") && !fabricPattern.equalsIgnoreCase("strip")) {
+			if(!u.equalToIgnoreCase("polka dot", "checkered", "strip", fabricPattern)) {
 				u.printTab("Shirt fabric pattern  has to be either \"polka dot\" / \"checkered\" / \"strip\"!");
 			}
-		} while (!fabricPattern.equalsIgnoreCase("polka dot") && !fabricPattern.equalsIgnoreCase("checkered") && !fabricPattern.equalsIgnoreCase("strip"));
+		} while (!u.equalToIgnoreCase("polka dot", "checkered", "strip", fabricPattern));
 		
 		productAdded();
 	}
 	
 	public void addBook() {
-		
+		String author;
+		String genre;
+		int publicationYear;
+		String crimeType;
+		String detective;
+		int suspenseLevel;
 	}
 }

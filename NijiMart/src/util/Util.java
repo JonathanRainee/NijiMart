@@ -56,5 +56,71 @@ public class Util {
         }
         return true;
 	}
-
+	
+	public boolean gtAndlt(int gt, int lt, int num) {
+		boolean valid;
+		if(num < gt || num > lt) {
+			return false;
+		}else {
+			return true;
+		}
+	}
+	
+	public boolean gtAndlt(float gt, float lt, float num) {
+		boolean valid;
+		if(num < gt || num > lt) {
+			return false;
+		}else {
+			return true;
+		}
+	}
+	
+	public boolean gtAndltOrEq(int gt, int lt, int num) {
+		boolean valid;
+		if(num <= gt || num >= lt) {
+			return false;
+		}else {
+			return true;
+		}
+	}
+	
+	public boolean equalTo(String a, String b, String value) {
+		boolean valid;
+		if(!value.equals(a) && !value.equals(b)) {
+			return false;
+		}else if(value.equals(a) || value.equals(b)){
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean equalTo(String a, String b, String c, String value) {
+		boolean valid;
+		if(!value.equals(a) && !value.equals(b) && !value.equals(c)) {
+			return false;
+		}else if(value.equals(a) || value.equals(b) || value.equals(c)){
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean equalToIgnoreCase(String a, String b, String value) {
+		boolean valid;
+		if(!value.equalsIgnoreCase(a) && !value.equalsIgnoreCase(b)) {
+			return false;
+		}else if(value.equalsIgnoreCase(a) || value.equalsIgnoreCase(b)){
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean equalToIgnoreCase(String a, String b, String c, String value) {
+		boolean valid;
+		if(!value.equalsIgnoreCase(a) && !value.equalsIgnoreCase(b) && !value.equalsIgnoreCase(c)) {
+			return false;
+		}else if(value.equalsIgnoreCase(a) || value.equalsIgnoreCase(b) || value.equalsIgnoreCase(c)){
+			return true;
+		}
+		return false;
+	}
 }
