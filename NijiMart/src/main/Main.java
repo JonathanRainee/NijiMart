@@ -1,7 +1,5 @@
 package main;
 
-import view.Engine;
-
 public class Main {
 
 	public Main() {

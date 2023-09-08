@@ -1,6 +1,9 @@
 package view;
 
 import controller.ProductController;
+import model.Laptop;
+import model.Novel;
+import model.Shirt;
 import util.Util;
 
 public class ProductView {
@@ -9,7 +12,6 @@ public class ProductView {
 	private Util u = Util.getInstance();
 	private ProductController pc = ProductController.getInstance();
 	
-	private int productID;
 	private String name;
 	private int price;
 	private String description;
@@ -33,9 +35,9 @@ public class ProductView {
 			u.cls();
 			u.printTab("Add Product");
 			u.printTab("===========");
-			u.printTab("1. Laptops");
-			u.printTab("2. Shirts");
-			u.printTab("3. Books");
+			u.printTab("1. Laptop");
+			u.printTab("2. Shirt");
+			u.printTab("3. Novel");
 			u.printTab("4. Cancel");			
 			u.printNormal(">> ");
 			opt = u.nextInt();
@@ -49,7 +51,7 @@ public class ProductView {
 				addShirt();
 				break;
 			case 3:
-				addBook();
+				addNovel();
 				break;
 			}
 		} while (opt != 4);
@@ -58,6 +60,7 @@ public class ProductView {
 	public void productAdded() {
 		u.printTab("Product added sucessfully!");
 		u.printTab("Press enter to continue...");
+		ProductController.productID++;
 		u.nextLine();
 	}
 	
@@ -139,6 +142,9 @@ public class ProductView {
 				u.printTab("Laptop operating system has to be \"penguin\" or \"jendela\"! (case insensitive)");
 			}
 		} while (!u.equalToIgnoreCase("penguin", "jendela", operatingSystem));
+		
+		Laptop laptop = new Laptop(ProductController.productID, name, price, description, screenSize, RAM, processor, warrantyPeriod, operatingSystem);
+		pc.addProduct(laptop);
 		productAdded();
 	}
 	
@@ -200,10 +206,13 @@ public class ProductView {
 			}
 		} while (!u.equalToIgnoreCase("polka dot", "checkered", "strip", fabricPattern));
 		
+		
+		Shirt shirt = new Shirt(ProductController.productID, name, price, description, size, color, material, sleeveLength, collarType, fabricPattern);
+		pc.addProduct(shirt);
 		productAdded();
 	}
 	
-	public void addBook() {
+	public void addNovel() {
 		String author;
 		String genre;
 		int publicationYear;
@@ -238,14 +247,6 @@ public class ProductView {
 			}
 		} while (!u.gtAndlt(2005, 2020, publicationYear));
 		
-//		do {
-//			u.printNormal("Input novel genre (genre name must be either \"horror\" / \"thriller\" / \"mystery\" (case insensitive)): ");
-//			genre = u.nextLine();
-//			if(!u.equalToIgnoreCase("horror", "thriller", "mystery", genre)) {
-//				u.printTab("Novel genre name must be either \"horror\" / \"thriller\" / \"mystery\" (case insensitive)");
-//			}
-//		} while (!u.equalToIgnoreCase("horror", "thriller", "mystery", genre));
-		
 		do {
 			u.printNormal("Input novel crime type (novel crime type must be either \"murder\" / \"heist\" / \"genocide\" (case insensitive)): ");
 			crimeType = u.nextLine();
@@ -271,6 +272,8 @@ public class ProductView {
 			}
 		} while (!u.gtAndlt(1, 5, suspenseLevel));
 		
+		Novel novel = new Novel(ProductController.productID, name, price, description, author, genre, publicationYear, crimeType, detective, suspenseLevel);
+		pc.addProduct(novel);
 		productAdded();
 		
 	}

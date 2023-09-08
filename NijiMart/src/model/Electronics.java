@@ -31,7 +31,7 @@ public class Electronics extends Product{
 	public void setWarrantyPeriod(int warrantyPeriod) {
 		this.warrantyPeriod = warrantyPeriod;
 	}
-	public Electronics(String productID, String name, int price, String description, float screenSize,
+	public Electronics(int productID, String name, int price, String description, float screenSize,
 			int RAM, String processor, int warrantyPeriod) {
 		super(productID, name, price, description);
 		this.screenSize = screenSize;

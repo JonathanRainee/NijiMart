@@ -25,7 +25,7 @@ public class Shirt extends Clothing{
 		this.fabricPattern = fabricPattern;
 	}
 	
-	public Shirt(String productID, String name, int price, String description, String size, String color,
+	public Shirt(int productID, String name, int price, String description, String size, String color,
 			String material, String sleeveLength, String collarType, String fabricPattern) {
 		super(productID, name, price, description, size, color, material);
 		this.sleeveLength = sleeveLength;

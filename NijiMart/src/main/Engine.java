@@ -1,4 +1,4 @@
-package view;
+package main;
 
 import java.util.ArrayList;
 
@@ -6,6 +6,7 @@ import controller.UserController;
 import model.Product;
 import model.User;
 import util.Util;
+import view.UserView;
 
 public class Engine {
 	
