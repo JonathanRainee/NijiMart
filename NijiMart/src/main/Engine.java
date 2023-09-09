@@ -2,6 +2,7 @@ package main;
 
 import java.util.ArrayList;
 
+import controller.ProductController;
 import controller.UserController;
 import model.Product;
 import model.User;
@@ -12,16 +13,18 @@ public class Engine {
 	
 	Util u = Util.getInstance();
 	UserController uc = UserController.getInstance();
+	ProductController pc = ProductController.getInstance();
 	UserView uv = UserView.getInstance();
 	public static User currUser = null;
 	public static ArrayList<User> users = new ArrayList<>();
 	public static ArrayList<Product> producst = new ArrayList<>();
 
 	public Engine() {
-		// TODO Auto-generated constructor stub
 		int opt = -9;
 		do {
+			System.out.println(pc.getLastID());
 			uc.initUser();
+			pc.initProduct();
 			u.cls();
 			u.printTab("NijiMart");
 			u.printTab("========");

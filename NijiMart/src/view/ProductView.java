@@ -143,7 +143,8 @@ public class ProductView {
 			}
 		} while (!u.equalToIgnoreCase("penguin", "jendela", operatingSystem));
 		
-		Laptop laptop = new Laptop(pc.generateID("laptop"), name, price, description, screenSize, RAM, processor, warrantyPeriod, operatingSystem);
+		pc.refreshID();
+		Laptop laptop = new Laptop("L"+pc.productID, name, price, description, screenSize, RAM, processor, warrantyPeriod, operatingSystem);
 		pc.addProduct(laptop);
 		productAdded();
 	}
@@ -206,8 +207,8 @@ public class ProductView {
 			}
 		} while (!u.equalToIgnoreCase("polka dot", "checkered", "strip", fabricPattern));
 		
-		
-		Shirt shirt = new Shirt(pc.generateID("shirt"), name, price, description, size, color, material, sleeveLength, collarType, fabricPattern);
+		pc.refreshID();
+		Shirt shirt = new Shirt("S"+pc.productID, name, price, description, size, color, material, sleeveLength, collarType, fabricPattern);
 		pc.addProduct(shirt);
 		productAdded();
 	}
@@ -261,7 +262,7 @@ public class ProductView {
 			if(!u.StartsWithIgnoreCase("Mr. ", "Mrs. ", detective)) {
 				u.printTab("Detective name must starts with either \"Mr. \" / \"Mrs. \" (case sensitive)!");
 			}
-		} while (!u.StartsWithIgnoreCase("Mr. ", "Mrs. ", detective));
+		} while (!u.StartsWithIgnoreCase("Mr.", "Mrs.", detective));
 		
 		do {
 			u.printNormal("Input suspense level (Suspense level has to be greater than 0 and less than or equal to 5): ");
@@ -272,7 +273,8 @@ public class ProductView {
 			}
 		} while (!u.gtAndlt(1, 5, suspenseLevel));
 		
-		Novel novel = new Novel(pc.generateID("novel"), name, price, description, author, genre, publicationYear, crimeType, detective, suspenseLevel);
+		pc.refreshID();
+		Novel novel = new Novel("N"+pc.productID, name, price, description, author, genre, publicationYear, crimeType, detective, suspenseLevel);
 		pc.addProduct(novel);
 		productAdded();
 		

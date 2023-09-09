@@ -1,8 +1,11 @@
 package controller;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.concurrent.atomic.LongAccumulator;
 
 import main.Engine;
 import model.Admin;
@@ -24,6 +27,11 @@ public class ProductController {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public void refreshID() {
+		int temp = getLastID() ;
+		productID = temp + 1;
+	}
+	
 	public static ProductController getInstance() {
 		if(instance == null) {
 			instance = new ProductController();
@@ -34,6 +42,10 @@ public class ProductController {
 	public void addProduct(Product product) {
 		Engine.producst.add(product);
 		writeFile(product);
+	}
+	
+	public void addProd(Product prod) {
+		Engine.producst.add(prod);
 	}
 	
 	public void writeFile(Product product) {
@@ -48,6 +60,75 @@ public class ProductController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+	}
+	
+	public void initProduct() {
+		try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            
+            while ((line = br.readLine()) != null) {
+            	if (!line.trim().isEmpty()) {
+            		String[] data = line.split(",");
+            		int fieldCount = data.length;
+            		String productID = data[0];
+            		String productName = data[1];
+            		int productPrice = Integer.parseInt(data[2]);
+            		String productDesc = data[3];
+            		
+            		if(productID.startsWith("L")) {
+            			float screenSize = Float.parseFloat(data[4]);
+            			int ram = Integer.parseInt(data[5]);
+            			String processor = data[6];
+            			int warranty = Integer.parseInt(data[7]);
+            			String operatingSystem = data[8];
+            			Laptop laptop = new Laptop(productID, productName, productPrice, productDesc, screenSize, ram, processor, warranty, operatingSystem);
+//            			Laptop l = new Laptop(productID, productName, productPrice, productDesc, screenSize, ram, processor, warrantyPeriod, operatingSystem)
+            			addProd(laptop);
+            		}else if(productID.startsWith("S")) {
+            			String size = data[4];
+            			String color = data[5];
+            			String material = data[6];
+            			String sleeve = data[7];
+            			String collar = data[8];
+            			String pattern = data[9];
+            			Shirt shirt = new Shirt(productID, productName, productPrice, productDesc, size, color, material, sleeve, collar, pattern);
+            			addProd(shirt);
+            		}else if(productID.startsWith("N")) {
+            			String author = data[4];
+            			String genre = data[5];
+            			int pubyear = Integer.parseInt(data[6]);
+            			String crimeType = data[7];
+            			String detective = data[8];
+            			int suspenseLvl = Integer.parseInt(data[9]);
+            			Novel novel = new Novel(productID, productName, productPrice, productDesc, author, genre, pubyear, crimeType, detective, suspenseLvl);
+            			addProd(novel);
+            		}
+            		
+            	}
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+	}
+	
+	public int getLastID() {
+		try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            int ID = -9;
+            
+            while ((line = br.readLine()) != null) {
+            	if (!line.trim().isEmpty()) {
+            		String[] data = line.split(",");
+            		int fieldCount = data.length;
+            		String productID = data[0];
+            		ID = Integer.parseInt(productID.charAt(1)+"");
+            	}
+            }
+            return ID;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+		return -9;
 	}
 	
 	public String generateID(String type) {
