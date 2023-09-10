@@ -48,6 +48,7 @@ public class UserView {
 			Engine.currUser = uc.searchUser(username, password);
 			if(Engine.currUser == null) {
 				u.printTab("Please input the right credential!");
+				u.nextLine();
 			}else {
 				showMenu(Engine.currUser);
 			}
@@ -128,34 +129,37 @@ public class UserView {
 					break;
 			}
 		}else if(user instanceof Admin) {
-			u.cls();
-			u.printTab("Hello, "+user.getUsername());
-			u.printTab("=====================");
-			u.printTab("1. Add Product");
-			u.printTab("2. Product List");
-			u.printTab("3. Update Product");			
-			u.printTab("4. Delete Product");
-			u.printTab("5. Logout");
-			u.printNormal(">> ");
-			menuOpt = u.nextInt();
-			u.nextLine();
-			switch (menuOpt) {
-			case 1:
-				pv.addProduct();
-				break;
-			case 2:
-				pv.viewProduct();
-				break;
-			case 3:
+			do {
+				u.cls();
+				u.printTab("Hello, "+user.getUsername());
+				u.printTab("=====================");
+				u.printTab("1. Add Product");
+				u.printTab("2. Product List");
+				u.printTab("3. Update Product");			
+				u.printTab("4. Delete Product");
+				u.printTab("5. Logout");
+				u.printNormal(">> ");
+				menuOpt = u.nextInt();
+				u.nextLine();
+				switch (menuOpt) {
+				case 1:
+					pv.addProduct();
+					break;
+				case 2:
+					pv.viewProduct();
+					break;
+				case 3:
+					
+					break;
+				case 4:
+					
+					break;
+				case 5:
+					uc.logout();
+					break;
+				}
 				
-				break;
-			case 4:
-				
-				break;
-			case 5:
-				uc.logout();
-				break;
-			}
+			} while (menuOpt != 5);
 		}
 	}
 

@@ -82,7 +82,6 @@ public class ProductController {
             			int warranty = Integer.parseInt(data[7]);
             			String operatingSystem = data[8];
             			Laptop laptop = new Laptop(productID, productName, productPrice, productDesc, screenSize, ram, processor, warranty, operatingSystem);
-//            			Laptop l = new Laptop(productID, productName, productPrice, productDesc, screenSize, ram, processor, warrantyPeriod, operatingSystem)
             			addProd(laptop);
             		}else if(productID.startsWith("S")) {
             			String size = data[4];
@@ -141,6 +140,15 @@ public class ProductController {
 			productID = "N"+productID;
 		}
 		return productID;
+	}
+	
+	public Product searchProduct(String ID) {
+		for (Product p : Engine.producst) {
+			if(p.getProductID().equals(ID)) {
+				return p;
+			}
+		}
+		return null;
 	}
 	
 	
