@@ -1,8 +1,10 @@
 package view;
 
 import controller.ProductController;
+import main.Engine;
 import model.Laptop;
 import model.Novel;
+import model.Product;
 import model.Shirt;
 import util.Util;
 
@@ -52,6 +54,102 @@ public class ProductView {
 				break;
 			case 3:
 				addNovel();
+				break;
+			}
+		} while (opt != 4);
+	}
+	
+	public void productDetailPrompt(String type) {
+		String opt = "";
+		do {
+			u.printNormal("To see the laptop please input the "+"type"+" ID (0 to cancel): ");
+			opt = u.nextLine();
+			if(opt.equals("0")) {
+				return;
+			}else {
+				
+			}			
+		} while (!opt.equals("0"));
+	}
+	
+	public void viewLaptop() {
+		u.cls();
+		u.printTab("+======+================+===========+============+==============+");
+		u.printTab("|                            NijiMart                           |");
+		u.printTab("+======+================+===========+============+==============+");
+		u.printTab("|  ID  |      Name      |   Price   |  Warranty  |   Processor  |");
+		u.printTab("+======+================+===========+============+==============+");
+		for (Product p: Engine.producst) {
+			if(p instanceof Laptop) {
+				System.out.printf("\t|  %-3s |  %-13s |  $%-7d |%6dY     |     %-9s|\n", p.getProductID(), p.getName(), p.getPrice(), ((Laptop) p).getWarrantyPeriod(), ((Laptop) p).getProcessor());
+			}else{
+				continue;
+			}
+		}
+		u.printTab("+======+================+===========+============+==============+");
+		productDetailPrompt("laptop");
+		
+	}
+	
+	public void viewShirt() {
+		u.cls();
+		u.printTab("+======+================+===========+==========+==============+");
+		u.printTab("|                           NijiMart                          |");
+		u.printTab("+======+================+===========+==========+==============+");
+		u.printTab("|  ID  |      Name      |   Price   |   Size   |   Material   |");
+		u.printTab("+======+================+===========+==========+==============+");
+		for (Product p: Engine.producst) {
+			if(p instanceof Shirt) {
+				System.out.printf("\t|  %-3s |  %-13s |  $%-7d |%6s    |    %-9s |\n", p.getProductID(), p.getName(), p.getPrice(), ((Shirt) p).getSize(), ((Shirt) p).getMaterial());
+			}else{
+				continue;
+			}
+		}
+		u.printTab("+======+================+===========+==========+==============+");
+		productDetailPrompt("shirt");
+		
+	}
+	
+	public void viewNovel() {
+		u.cls();
+		u.printTab("+======+================+===========+=====================+============+");
+		u.printTab("|                               NijiMart                               |");
+		u.printTab("+======+================+===========+=====================+============+");
+		u.printTab("|  ID  |      Name      |   Price   |       Author        |    Genre   |");
+		u.printTab("+======+================+===========+=====================+============+");
+		for (Product p: Engine.producst) {
+			if(p instanceof Novel) {
+				System.out.printf("\t|  %-3s |  %-13s |  $%-7d |  %15s    |  %-9s |\n", p.getProductID(), p.getName(), p.getPrice(), ((Novel) p).getAuthor(), ((Novel) p).getGenre());
+			}else{
+				continue;
+			}
+		}
+		u.printTab("+======+================+===========+=====================+============+");
+		productDetailPrompt("novel");
+	}
+	
+	public void viewProduct() {
+		int opt = -9;
+		do {
+			u.cls();
+			u.printTab("NijiMart");
+			u.printTab("========");
+			u.printTab("1. Laptop");
+			u.printTab("2. Shirt");
+			u.printTab("3. Novel");
+			u.printTab("4. Cancel");
+			u.printNormal(">> ");
+			opt = u.nextInt();
+			u.nextLine();
+			switch (opt) {
+			case 1:
+				viewLaptop();
+				break;
+			case 2:
+				viewShirt();
+				break;
+			case 3:
+				viewNovel();
 				break;
 			}
 		} while (opt != 4);

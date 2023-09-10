@@ -144,7 +144,7 @@ public class UserView {
 				pv.addProduct();
 				break;
 			case 2:
-				
+				pv.viewProduct();
 				break;
 			case 3:
 				
