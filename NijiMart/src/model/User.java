@@ -8,6 +8,7 @@ public class User {
 	private String password;
 	private int point;
 	private ArrayList<Product> cart;
+	private ArrayList<Integer> productQuantity;
 	
 	public String getUsername() {
 		return username;
@@ -34,6 +35,12 @@ public class User {
 		this.point = point;
 	}
 	
+	public ArrayList<Integer> getProductQuantity() {
+		return productQuantity;
+	}
+	public void setProductQuantity(ArrayList<Integer> productQuantity) {
+		this.productQuantity = productQuantity;
+	}
 	public User(String username, String password, int point, ArrayList<Product> cart) {
 		super();
 		this.username = username;
@@ -49,6 +56,15 @@ public class User {
 		this.point = point;
 	}
 	
+	public User(String username, String password, int point, ArrayList<Product> cart,
+			ArrayList<Integer> productQuantity) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.point = point;
+		this.cart = cart;
+		this.productQuantity = productQuantity;
+	}
 	public void addProduct() {
 		
 	}

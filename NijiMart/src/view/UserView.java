@@ -86,13 +86,16 @@ public class UserView {
 		} while (password.length() < 8 || password.length() > 20 || !u.isAlNum(password));
 		
 		ArrayList<Product> cart = new ArrayList<>();
-		
-		if(uc.getUserCount()== 0) {
-			Admin adm = new Admin(username, password, 0, cart);
+		ArrayList<Integer> prodQ = new ArrayList<>();
+		System.out.println("user count "+uc.getUserCount());
+		if(uc.getUserCount() == 1) {
+			System.out.println("buat admin");
+			Admin adm = new Admin(username, password, 0, cart, prodQ);
 			Engine.users.add(adm);
 			uc.writeFile(adm);
-		}else {
-			Regular reg = new Regular(username, password, 0, cart, 0);
+		}else if(uc.getUserCount() > 1){
+			System.out.println("buat reg");
+			Regular reg = new Regular(username, password, 0, cart, prodQ, 0);
 			Engine.users.add(reg);					
 			uc.writeFile(reg);
 		}

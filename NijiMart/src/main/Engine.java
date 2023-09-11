@@ -21,10 +21,10 @@ public class Engine {
 
 	public Engine() {
 		int opt = -9;
+		uc.initUser();
+		pc.initProduct();
 		do {
 			System.out.println(pc.getLastID());
-			uc.initUser();
-			pc.initProduct();
 			u.cls();
 			u.printTab("NijiMart");
 			u.printTab("========");

@@ -32,4 +32,14 @@ public class Novel extends Books{
 		this.detective = detective;
 		this.suspenseLevel = suspenseLevel;
 	}
+	
+	public Novel(String productID, String name, int price, String description, int quantity, String author, String genre,
+			int publicationYear, String crimeType, String detective, int suspenseLevel) {
+		super(productID, name, price, description, quantity, author, genre, publicationYear);
+		this.crimeType = crimeType;
+		this.detective = detective;
+		this.suspenseLevel = suspenseLevel;
+	}
+	
+	
 }

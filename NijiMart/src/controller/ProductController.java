@@ -14,6 +14,7 @@ import model.Novel;
 import model.Product;
 import model.Regular;
 import model.Shirt;
+import model.User;
 import util.Util;
 
 public class ProductController {
@@ -149,6 +150,10 @@ public class ProductController {
 			}
 		}
 		return null;
+	}
+	
+	public void addProductToCart(User u, Product p) {
+		Engine.currUser.getCart().add(p);
 	}
 	
 	

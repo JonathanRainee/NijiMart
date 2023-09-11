@@ -83,6 +83,8 @@ public class ProductView {
 			if(q < 0) {
 				u.printTab("Please input the right amount quantity!");
 				u.nextLine();
+			}else if(q >= 1) {
+				pc.addProductToCart(Engine.currUser, p);
 			}else if(q == 0){
 				return;
 			}

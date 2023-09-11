@@ -17,6 +17,13 @@ public class Laptop extends Electronics{
 		this.operatingSystem = operatingSystem;
 	}
 	
+	public Laptop(String productID, String name, int price, String description, int quantity, float screenSize, int RAM,
+			String processor, int warrantyPeriod, String operatingSystem) {
+		super(productID, name, price, description, quantity, screenSize, RAM, processor, warrantyPeriod);
+		this.operatingSystem = operatingSystem;
+	}
+	
+	
 	
 	
 	

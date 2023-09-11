@@ -32,4 +32,16 @@ public class Books extends Product{
 		this.genre = genre;
 		this.publicationYear = publicationYear;
 	}
+	
+	public Books(String productID, String name, int price, String description, int quantity, String author, String genre,
+			int publicationYear) {
+		super(productID, name, price, description, quantity);
+		this.author = author;
+		this.genre = genre;
+		this.publicationYear = publicationYear;
+	}
+	
+	
+	
+	
 }

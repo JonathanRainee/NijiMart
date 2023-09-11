@@ -32,4 +32,13 @@ public class Shirt extends Clothing{
 		this.collarType = collarType;
 		this.fabricPattern = fabricPattern;
 	}
+	public Shirt(String productID, String name, int price, String description, int quantity, String size, String color,
+			String material, String sleeveLength, String collarType, String fabricPattern) {
+		super(productID, name, price, description,  quantity, size, color, material);
+		this.sleeveLength = sleeveLength;
+		this.collarType = collarType;
+		this.fabricPattern = fabricPattern;
+	}
+	
+	
 }

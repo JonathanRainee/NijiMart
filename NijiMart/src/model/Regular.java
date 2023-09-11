@@ -26,6 +26,13 @@ public class Regular extends User{
 		// TODO Auto-generated constructor stub
 	}
 
+	public Regular(String username, String password, int point, ArrayList<Product> cart,
+			ArrayList<Integer> productQuantity, int loyaltyPoint) {
+		super(username, password, point, cart, productQuantity);
+		this.loyaltyPoint = loyaltyPoint;
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public void getCurrPoint() {
 		// TODO Auto-generated method stub

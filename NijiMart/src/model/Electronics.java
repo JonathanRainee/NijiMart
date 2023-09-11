@@ -40,6 +40,17 @@ public class Electronics extends Product{
 		this.warrantyPeriod = warrantyPeriod;
 	}
 	
+	public Electronics(String productID, String name, int price, String description, int quantity, float screenSize, int rAM,
+			String processor, int warrantyPeriod) {
+		super(productID, name, price, description, quantity);
+		this.screenSize = screenSize;
+		this.RAM = rAM;
+		this.processor = processor;
+		this.warrantyPeriod = warrantyPeriod;
+	}
+	
+	
+	
 	
 	
 	
