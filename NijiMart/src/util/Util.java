@@ -157,4 +157,9 @@ public class Util {
 		
 		return false;
 	}
+	
+	public void pressEnter() {
+		printTab("Press enter to continue...");
+		nextLine();
+	}
 }

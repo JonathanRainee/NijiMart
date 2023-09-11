@@ -22,10 +22,12 @@ public class ProductController {
 	Util util = Util.getInstance();
 	private String fileName = "products.csv";
 	private static ProductController instance;
+	private UserController uc;
 	public static int productID = 1;
 	
 	private ProductController() {
 		// TODO Auto-generated constructor stub
+//		uc = UserController.getInstance();
 	}
 	
 	public void refreshID() {
@@ -151,11 +153,6 @@ public class ProductController {
 		}
 		return null;
 	}
-	
-	public void addProductToCart(User u, Product p) {
-		Engine.currUser.getCart().add(p);
-	}
-	
 	
 
 }

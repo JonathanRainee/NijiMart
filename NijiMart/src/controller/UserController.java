@@ -20,8 +20,13 @@ public class UserController {
 	private int userCount = 0;
 	private String fileName = "users.csv";
 	private static UserController instance;
-	private ProductController pc = ProductController.getInstance();
+	private ProductController pc = ProductController.getInstance();;
 	private Util u = Util.getInstance();
+	
+	private UserController() {
+		// TODO Auto-generated constructor stub
+		
+	}
 
 	public int getUserCount() {
 		return userCount;
@@ -29,10 +34,6 @@ public class UserController {
 
 	public void setUserCount(int userCount) {
 		this.userCount = userCount;
-	}
-
-	private UserController() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public static UserController getInstance() {
@@ -96,10 +97,51 @@ public class UserController {
         }
 	}
 	
+	public void writeFile(ArrayList<User> users) {
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
+			for (User u : users) {
+				if(u instanceof Admin) {
+					String itemIDS = "-";
+					String productQuantity = "-";
+					if(!u.getCart().isEmpty()) {
+						itemIDS = "";
+						for (Product p : u.getCart()) {
+							itemIDS += p.getProductID();
+						}
+					}
+					if(!u.getProductQuantity().isEmpty()) {
+						productQuantity = "";
+						for (Integer i : u.getProductQuantity()) {
+							productQuantity += i;
+						}
+					}
+					writer.write(u.getUsername()+","+u.getPassword()+","+u.getPoint()+","+itemIDS+","+productQuantity+"\n");
+				}else if(u instanceof Regular) {
+					String itemIDS = "-";
+					String productQuantity = "-";
+					if(!u.getCart().isEmpty()) {
+						for (Product p : u.getCart()) {
+							itemIDS += p.getProductID();
+						}
+					}
+					if(!u.getProductQuantity().isEmpty()) {
+						for (Integer i : u.getProductQuantity()) {
+							productQuantity += i;
+						}
+					}
+					writer.write(u.getUsername()+","+u.getPassword()+","+u.getPoint()+","+itemIDS+","+productQuantity+","+((Regular)u).getLoyaltyPoint()+"\n");
+				}
+			}
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+	}
+	
 	public void writeAllUser(ArrayList<User> users) {
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
 			for (User user : Engine.users) {
 				if(user instanceof Admin) {
+					
 					String itemIDS = "-";
 					if(!user.getCart().isEmpty()) {
 						for (Product p : user.getCart()) {
@@ -122,23 +164,60 @@ public class UserController {
         }
 	}
 	
-	public void deleteFile() {
+	public void deleteFile(ArrayList<User> users) {
         
         try {
             // Create a FileWriter with append mode set to false (this will overwrite the file)
-            FileWriter writer = new FileWriter(new File(fileName), false);
-            
+            FileWriter writer = new FileWriter(new File(fileName), false);  
             writer.close();
             
-            System.out.println("All lines in the CSV file have been deleted.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
+			for (User u : users) {
+				if(u instanceof Admin) {
+					String itemIDS = "-";
+					String productQuantity = "-";
+					if(!u.getCart().isEmpty()) {
+						itemIDS = "";
+						for (Product p : u.getCart()) {
+							itemIDS += p.getProductID();
+						}
+					}
+					if(!u.getProductQuantity().isEmpty()) {
+						productQuantity = "";
+						for (Integer i : u.getProductQuantity()) {
+							productQuantity += i.toString();
+						}
+					};
+					writer.write(u.getUsername()+","+u.getPassword()+","+u.getPoint()+","+itemIDS+","+productQuantity+"\n");
+				}else if(u instanceof Regular) {
+					String itemIDS = "-";
+					String productQuantity = "-";
+					if(!u.getCart().isEmpty()) {
+						for (Product p : u.getCart()) {
+							itemIDS += p.getProductID();
+						}
+					}
+					if(!u.getProductQuantity().isEmpty()) {
+						for (Integer i : u.getProductQuantity()) {
+							productQuantity += i;
+						}
+					}
+					writer.write(u.getUsername()+","+u.getPassword()+","+u.getPoint()+","+itemIDS+","+productQuantity+","+((Regular)u).getLoyaltyPoint()+"\n");
+				}
+			}
         } catch (IOException e) {
             e.printStackTrace();
         }
 	}
 	
 	public void updateFile(ArrayList<User> users) {
-		deleteFile();
-		writeAllUser(users);
+		deleteFile(users);
+//		writeAllUser(users);
+//		writeFile(users);
 	}
 	
 	public void initUser() {
@@ -147,11 +226,10 @@ public class UserController {
             
             while ((line = br.readLine()) != null) {
             	if (!line.trim().isEmpty()) {
-            		ArrayList<Product> p = null;
-            		ArrayList<Integer> q = null;
+            		ArrayList<Product> p = new ArrayList<>();
+            		ArrayList<Integer> q = new ArrayList<>();
             		String[] data = line.split(",");
             		int fieldCount = data.length;
-            		System.out.println("field "+fieldCount);
             		String username = data[0].trim();
             		String password = data[1].trim();
             		int point = Integer.parseInt(data[2].trim());
@@ -161,7 +239,7 @@ public class UserController {
             		if(fieldCount > 5) {
             			int loyaltyPoint = Integer.parseInt(data[5].trim());
             			if(cart.equals("-")) {
-            				Engine.users.add(new Regular(username, password, point, null, null, loyaltyPoint));
+            				Engine.users.add(new Regular(username, password, point, p, q, loyaltyPoint));
                 		}else if(!cart.equals("-")){
                 			for(int i = 0; i < productQuantity.length(); i++) {
                 				q.add((int) productQuantity.charAt(i));
@@ -176,7 +254,7 @@ public class UserController {
                 		}
             		}else {
             			if(cart.equals("-")) {
-            				Engine.users.add(new Admin(username, password, point, null, null));          	
+            				Engine.users.add(new Admin(username, password, point, p, q));          	
             			}else if(!cart.equals("-")){
             				for(int i = 0; i < productQuantity.length(); i++) {
                 				q.add((int) productQuantity.charAt(i));
@@ -200,6 +278,13 @@ public class UserController {
 	
 	public void logout() {
 		Engine.currUser = null;
+	}
+	
+	public void addProductToCart(User u, Product p) {
+		
+		Engine.currUser.getCart().add(p) ;
+		Engine.currUser.getProductQuantity().add(p.getQuantity());
+		deleteFile(Engine.users);
 	}
 
 }

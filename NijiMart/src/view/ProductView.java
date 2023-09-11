@@ -1,6 +1,7 @@
 package view;
 
 import controller.ProductController;
+import controller.UserController;
 import main.Engine;
 import model.Laptop;
 import model.Novel;
@@ -13,6 +14,7 @@ public class ProductView {
 	private static ProductView instance;
 	private Util u = Util.getInstance();
 	private ProductController pc = ProductController.getInstance();
+	private UserController uc = UserController.getInstance();
 	
 	private String name;
 	private int price;
@@ -67,6 +69,11 @@ public class ProductView {
 		u.printTab("Product description: "+p.getDescription());
 	}
 	
+	public void addToCart(Product p) {
+		uc.addProductToCart(Engine.currUser, p);
+		u.pressEnter();
+	}
+	
 	public void viewLaptopDetail(Product p) {
 		int q = -9;
 		do {
@@ -84,7 +91,8 @@ public class ProductView {
 				u.printTab("Please input the right amount quantity!");
 				u.nextLine();
 			}else if(q >= 1) {
-				pc.addProductToCart(Engine.currUser, p);
+				Laptop l = new Laptop(p.getProductID(), p.getName(), p.getPrice(), p.getDescription(), q, ((Laptop)p).getScreenSize(), ((Laptop)p).getRAM(), ((Laptop)p).getProcessor(), ((Laptop)p).getWarrantyPeriod(), ((Laptop)p).getOperatingSystem());
+				addToCart(l);
 			}else if(q == 0){
 				return;
 			}

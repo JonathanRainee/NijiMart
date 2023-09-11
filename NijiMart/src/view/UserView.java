@@ -87,20 +87,19 @@ public class UserView {
 		
 		ArrayList<Product> cart = new ArrayList<>();
 		ArrayList<Integer> prodQ = new ArrayList<>();
-		System.out.println("user count "+uc.getUserCount());
 		if(uc.getUserCount() == 1) {
-			System.out.println("buat admin");
 			Admin adm = new Admin(username, password, 0, cart, prodQ);
 			Engine.users.add(adm);
 			uc.writeFile(adm);
 		}else if(uc.getUserCount() > 1){
-			System.out.println("buat reg");
 			Regular reg = new Regular(username, password, 0, cart, prodQ, 0);
 			Engine.users.add(reg);					
 			uc.writeFile(reg);
 		}
 		int newUserCount = uc.getUserCount() + 1;
 		uc.setUserCount(newUserCount);
+		u.printTab("User registered succesfully..");
+		u.nextLine();
 	}
 
 	public void showMenu(User user) {
