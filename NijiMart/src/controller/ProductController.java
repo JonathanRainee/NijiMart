@@ -26,8 +26,7 @@ public class ProductController {
 	public static int productID = 1;
 	
 	private ProductController() {
-		// TODO Auto-generated constructor stub
-//		uc = UserController.getInstance();
+		
 	}
 	
 	public void refreshID() {

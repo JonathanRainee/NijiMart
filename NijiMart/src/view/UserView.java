@@ -164,5 +164,15 @@ public class UserView {
 			} while (menuOpt != 5);
 		}
 	}
+	
+	public void printUser() {
+		for (User u : Engine.users) {
+			System.out.println(u.getUsername());
+			for (Product p : u.getCart()) {
+				System.out.println(p.getProductID()+" "+p.getName());
+			}
+			System.out.println("===============");
+		}
+	}
 
 }

@@ -165,6 +165,8 @@ public class UserController {
 	}
 	
 	public void deleteFile(ArrayList<User> users) {
+		for (Integer i : Engine.currUser.getProductQuantity()) {
+		}
         
         try {
             // Create a FileWriter with append mode set to false (this will overwrite the file)
@@ -256,15 +258,19 @@ public class UserController {
             			if(cart.equals("-")) {
             				Engine.users.add(new Admin(username, password, point, p, q));          	
             			}else if(!cart.equals("-")){
-            				for(int i = 0; i < productQuantity.length(); i++) {
-                				q.add((int) productQuantity.charAt(i));
-                			}
-            				
             				for (int i = 0; i < cart.length(); i += 2) {
-                				String id = cart.charAt(i)+cart.charAt(i+1)+"";
+            					String a = Character.toString(cart.charAt(i));
+            					String b = Character.toString(cart.charAt(i+1));
+            					String id = a+b;
 								Product prod = pc.searchProduct(id);
 								p.add(prod);
 							}
+            				
+            				for(int i = 0; i < productQuantity.length(); i++) {
+                				q.add(Integer.parseInt(Character.toString(productQuantity.charAt(i))));
+                			}
+            				
+            				
             				Engine.users.add(new Admin(username, password, point, p, q)); 
             			}
             		}            		
@@ -281,7 +287,6 @@ public class UserController {
 	}
 	
 	public void addProductToCart(User u, Product p) {
-		
 		Engine.currUser.getCart().add(p) ;
 		Engine.currUser.getProductQuantity().add(p.getQuantity());
 		deleteFile(Engine.users);
