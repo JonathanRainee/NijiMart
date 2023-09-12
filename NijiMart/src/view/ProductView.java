@@ -115,6 +115,9 @@ public class ProductView {
 			if(q < 0) {
 				u.printTab("Please input the right amount quantity!");
 				u.nextLine();
+			}else if(q >= 1) {
+				Shirt s = new Shirt(p.getProductID(), p.getName(), p.getPrice(), p.getDescription(), q, ((Shirt)p).getSize(), ((Shirt)p).getColor(), ((Shirt)p).getMaterial(), ((Shirt)p).getSleeveLength(), ((Shirt)p).getCollarType(), ((Shirt)p).getFabricPattern());
+				addToCart(s);
 			}else if(q == 0){
 				return;
 			}
@@ -137,6 +140,9 @@ public class ProductView {
 			if(q < 0) {
 				u.printTab("Please input the right amount quantity!");
 				u.nextLine();
+			}else if(q >= 1) {
+				Novel n = new Novel(p.getProductID(), p.getName(), p.getPrice(), p.getDescription(), q, ((Novel)p).getAuthor(), ((Novel)p).getGenre(), ((Novel)p).getPublicationYear(), ((Novel)p).getCrimeType(), ((Novel)p).getDetective(), ((Novel)p).getSuspenseLevel());
+				addToCart(n);
 			}else if(q == 0){
 				return;
 			}
@@ -165,7 +171,7 @@ public class ProductView {
 			}
 	}
 	
-	public void viewLaptop() {
+	public void buyLaptopView() {
 		do {
 			u.cls();
 			u.printTab("+======+================+===========+============+==============+");
@@ -187,7 +193,7 @@ public class ProductView {
 		
 	}
 	
-	public void viewShirt() {
+	public void buyShirtView() {
 		do {
 			u.cls();
 			u.printTab("+======+================+===========+==========+==============+");
@@ -209,7 +215,7 @@ public class ProductView {
 		
 	}
 	
-	public void viewNovel() {
+	public void buyNovelView() {
 		do {
 			u.cls();
 			u.printTab("+======+================+===========+=====================+============+");
@@ -227,6 +233,90 @@ public class ProductView {
 			u.printTab("+======+================+===========+=====================+============+");
 			productDetailPrompt("novel");
 		} while (!id.equals("0"));
+	}
+	
+	public void viewLaptop() {
+		u.cls();
+		u.printTab("+======+================+===========+============+==============+");
+		u.printTab("|                            NijiMart                           |");
+		u.printTab("+======+================+===========+============+==============+");
+		u.printTab("|  ID  |      Name      |   Price   |  Warranty  |   Processor  |");
+		u.printTab("+======+================+===========+============+==============+");
+		for (Product p: Engine.producst) {
+			if(p instanceof Laptop) {
+				System.out.printf("\t|  %-3s |  %-13s |  $%-7d |%6dY     |     %-9s|\n", p.getProductID(), p.getName(), p.getPrice(), ((Laptop) p).getWarrantyPeriod(), ((Laptop) p).getProcessor());
+			}else{
+				continue;
+			}
+		}
+		u.printTab("+======+================+===========+============+==============+");
+		u.pressEnter();
+	}
+	
+	public void viewShirt() {
+		u.cls();
+		u.printTab("+======+================+===========+==========+==============+");
+		u.printTab("|                           NijiMart                          |");
+		u.printTab("+======+================+===========+==========+==============+");
+		u.printTab("|  ID  |      Name      |   Price   |   Size   |   Material   |");
+		u.printTab("+======+================+===========+==========+==============+");
+		for (Product p: Engine.producst) {
+			if(p instanceof Shirt) {
+				System.out.printf("\t|  %-3s |  %-13s |  $%-7d |%6s    |    %-9s |\n", p.getProductID(), p.getName(), p.getPrice(), ((Shirt) p).getSize(), ((Shirt) p).getMaterial());
+			}else{
+				continue;
+			}
+		}
+		u.printTab("+======+================+===========+==========+==============+");
+		u.pressEnter();
+	}
+	
+	public void viewNovel() {
+		u.cls();
+		u.printTab("+======+================+===========+=====================+============+");
+		u.printTab("|                               NijiMart                               |");
+		u.printTab("+======+================+===========+=====================+============+");
+		u.printTab("|  ID  |      Name      |   Price   |       Author        |    Genre   |");
+		u.printTab("+======+================+===========+=====================+============+");
+		for (Product p: Engine.producst) {
+			if(p instanceof Novel) {
+				System.out.printf("\t|  %-3s |  %-13s |  $%-7d |  %15s    |  %-9s |\n", p.getProductID(), p.getName(), p.getPrice(), ((Novel) p).getAuthor(), ((Novel) p).getGenre());
+			}else{
+				continue;
+			}
+		}
+		u.printTab("+======+================+===========+=====================+============+");
+		u.pressEnter();
+	}
+	
+	public void buyProduct() {
+		int opt = -9;
+		do {
+			u.cls();
+			u.printTab("NijiMart");
+			u.printTab("========");
+			u.printTab("1. Laptop");
+			u.printTab("2. Shirt");
+			u.printTab("3. Novel");
+			u.printTab("4. Cancel");
+			u.printNormal(">> ");
+			opt = u.nextInt();
+			u.nextLine();
+			switch (opt) {
+			case 1:
+				buyLaptopView();
+				break;
+			case 2:
+				buyShirtView();
+				break;
+			case 3:
+				buyNovelView();
+				break;
+			case 4:
+				return;
+				
+			}
+		} while (opt != 4);
 	}
 	
 	public void viewProduct() {
@@ -254,7 +344,6 @@ public class ProductView {
 				break;
 			case 4:
 				return;
-				
 			}
 		} while (opt != 4);
 	}

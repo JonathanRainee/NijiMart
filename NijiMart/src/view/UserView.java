@@ -15,6 +15,8 @@ public class UserView {
 	private static UserView instance;
 	private ProductView pv = ProductView.getInstance();
 	private UserController uc = UserController.getInstance();
+	private RegularView rv = RegularView.getInstance();
+	private AdminView av = AdminView.getInstance();
 	private Util u = Util.getInstance();
 	
 	private UserView() {
@@ -103,65 +105,11 @@ public class UserView {
 	}
 
 	public void showMenu(User user) {
-		
 		int menuOpt = -9;
 		if(user instanceof Regular) {
-			u.cls();
-			u.printTab("Hello, "+user.getUsername());
-			u.printTab("=====================");
-			u.printTab("1. Buy Product");
-			u.printTab("2. Product List");
-			u.printTab("3. Your Cart");
-			u.printTab("4. Logout");
-			u.printNormal(">> ");
-			menuOpt = u.nextInt();
-			u.nextLine();
-			switch (menuOpt) {
-				case 1:
-					
-					break;
-				case 2:
-					
-					break;
-				case 3:
-					
-					break;
-				case 4:
-					uc.logout();
-					break;
-			}
+			rv.regularMenu(user);
 		}else if(user instanceof Admin) {
-			do {
-				u.cls();
-				u.printTab("Hello, "+user.getUsername());
-				u.printTab("=====================");
-				u.printTab("1. Add Product");
-				u.printTab("2. Product List");
-				u.printTab("3. Update Product");			
-				u.printTab("4. Delete Product");
-				u.printTab("5. Logout");
-				u.printNormal(">> ");
-				menuOpt = u.nextInt();
-				u.nextLine();
-				switch (menuOpt) {
-				case 1:
-					pv.addProduct();
-					break;
-				case 2:
-					pv.viewProduct();
-					break;
-				case 3:
-					
-					break;
-				case 4:
-					
-					break;
-				case 5:
-					uc.logout();
-					break;
-				}
-				
-			} while (menuOpt != 5);
+			av.adminMenu(user);
 		}
 	}
 	

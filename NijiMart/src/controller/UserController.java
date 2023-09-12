@@ -25,7 +25,6 @@ public class UserController {
 	
 	private UserController() {
 		// TODO Auto-generated constructor stub
-		
 	}
 
 	public int getUserCount() {
@@ -120,11 +119,13 @@ public class UserController {
 					String itemIDS = "-";
 					String productQuantity = "-";
 					if(!u.getCart().isEmpty()) {
+						itemIDS = "";
 						for (Product p : u.getCart()) {
 							itemIDS += p.getProductID();
 						}
 					}
 					if(!u.getProductQuantity().isEmpty()) {
+						productQuantity = "";
 						for (Integer i : u.getProductQuantity()) {
 							productQuantity += i;
 						}
@@ -141,7 +142,6 @@ public class UserController {
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
 			for (User user : Engine.users) {
 				if(user instanceof Admin) {
-					
 					String itemIDS = "-";
 					if(!user.getCart().isEmpty()) {
 						for (Product p : user.getCart()) {
@@ -164,7 +164,7 @@ public class UserController {
         }
 	}
 	
-	public void deleteFile(ArrayList<User> users) {
+	public void rewriteFile(ArrayList<User> users) {
 		for (Integer i : Engine.currUser.getProductQuantity()) {
 		}
         
@@ -199,11 +199,13 @@ public class UserController {
 					String itemIDS = "-";
 					String productQuantity = "-";
 					if(!u.getCart().isEmpty()) {
+						itemIDS = "";
 						for (Product p : u.getCart()) {
 							itemIDS += p.getProductID();
 						}
 					}
 					if(!u.getProductQuantity().isEmpty()) {
+						productQuantity = "";
 						for (Integer i : u.getProductQuantity()) {
 							productQuantity += i;
 						}
@@ -217,9 +219,7 @@ public class UserController {
 	}
 	
 	public void updateFile(ArrayList<User> users) {
-		deleteFile(users);
-//		writeAllUser(users);
-//		writeFile(users);
+		rewriteFile(users);
 	}
 	
 	public void initUser() {
@@ -289,7 +289,7 @@ public class UserController {
 	public void addProductToCart(User u, Product p) {
 		Engine.currUser.getCart().add(p) ;
 		Engine.currUser.getProductQuantity().add(p.getQuantity());
-		deleteFile(Engine.users);
+		rewriteFile(Engine.users);
 	}
 
 }
