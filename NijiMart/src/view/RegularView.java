@@ -29,16 +29,17 @@ public class RegularView {
 			u.cls();
 			u.printTab("Hello, "+user.getUsername());
 			u.printTab("=====================");
-			u.printTab("1. Buy Product");
+			u.printTab("1. Add Product to Cart");
 			u.printTab("2. Product List");
 			u.printTab("3. Your Cart");
-			u.printTab("4. Logout");
+			u.printTab("4. Checkout");
+			u.printTab("5. Logout");
 			u.printNormal(">> ");
 			menuOpt = u.nextInt();
 			u.nextLine();
 			switch (menuOpt) {
 				case 1:
-					pv.buyProduct();
+					pv.addProductToCart();
 					break;
 				case 2:
 					pv.viewProduct();
@@ -47,6 +48,9 @@ public class RegularView {
 					
 					break;
 				case 4:
+					
+					break;
+				case 5:
 					uc.logout();
 					break;
 			}

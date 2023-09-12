@@ -32,32 +32,35 @@ public class AdminView {
 			u.printTab("2. Product List");
 			u.printTab("3. Update Product");			
 			u.printTab("4. Delete Product");
-			u.printTab("5. Buy Product");
-			u.printTab("5. Logout");
+			u.printTab("5. Add Product to Cart");
+			u.printTab("6. Checkout");
+			u.printTab("7. Logout");
 			u.printNormal(">> ");
 			menuOpt = u.nextInt();
 			u.nextLine();
 			switch (menuOpt) {
-			case 1:
-				pv.addProduct();
-				break;
-			case 2:
-				pv.viewProduct();
-				break;
-			case 3:
-				
-				break;
-			case 4:
-				
-				break;
-			case 5:
-				pv.buyProduct();
-				break;
-			case 6:					
-				uc.logout();
-				break;
-			}
-			
+				case 1:
+					pv.addProduct();
+					break;
+				case 2:
+					pv.viewProduct();
+					break;
+				case 3:
+					
+					break;
+				case 4:
+					
+					break;
+				case 5:
+					pv.addProductToCart();
+					break;
+				case 6:
+					
+					break;
+				case 7:					
+					uc.logout();
+					break;
+				}
 		} while (menuOpt != 5);
 	}
 	

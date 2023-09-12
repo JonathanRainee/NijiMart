@@ -171,7 +171,7 @@ public class ProductView {
 			}
 	}
 	
-	public void buyLaptopView() {
+	public void addLaptopView() {
 		do {
 			u.cls();
 			u.printTab("+======+================+===========+============+==============+");
@@ -193,7 +193,7 @@ public class ProductView {
 		
 	}
 	
-	public void buyShirtView() {
+	public void addShirtView() {
 		do {
 			u.cls();
 			u.printTab("+======+================+===========+==========+==============+");
@@ -215,7 +215,7 @@ public class ProductView {
 		
 	}
 	
-	public void buyNovelView() {
+	public void addNovelView() {
 		do {
 			u.cls();
 			u.printTab("+======+================+===========+=====================+============+");
@@ -289,7 +289,7 @@ public class ProductView {
 		u.pressEnter();
 	}
 	
-	public void buyProduct() {
+	public void addProductToCart() {
 		int opt = -9;
 		do {
 			u.cls();
@@ -304,13 +304,13 @@ public class ProductView {
 			u.nextLine();
 			switch (opt) {
 			case 1:
-				buyLaptopView();
+				addLaptopView();
 				break;
 			case 2:
-				buyShirtView();
+				addShirtView();
 				break;
 			case 3:
-				buyNovelView();
+				addNovelView();
 				break;
 			case 4:
 				return;
