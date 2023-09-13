@@ -153,5 +153,15 @@ public class ProductController {
 		return null;
 	}
 	
+	public void updateProduct(Product destination, Product source) {
+		if(destination instanceof Laptop) {
+			((Laptop)destination).setName(((Laptop)source).getName());
+		}else if(destination instanceof Shirt) {
+			
+		}else if(destination instanceof Novel) {
+			
+		}
+	}
+	
 
 }

@@ -46,7 +46,7 @@ public class AdminView {
 					pv.viewProduct();
 					break;
 				case 3:
-					
+					pv.updateProduct();
 					break;
 				case 4:
 					
