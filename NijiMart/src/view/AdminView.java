@@ -61,7 +61,7 @@ public class AdminView {
 					uc.logout();
 					break;
 				}
-		} while (menuOpt != 5);
+		} while (menuOpt != 7);
 	}
 	
 	public void addProduct() {

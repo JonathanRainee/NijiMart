@@ -165,11 +165,7 @@ public class UserController {
 	}
 	
 	public void rewriteFile(ArrayList<User> users) {
-		for (Integer i : Engine.currUser.getProductQuantity()) {
-		}
-        
         try {
-            // Create a FileWriter with append mode set to false (this will overwrite the file)
             FileWriter writer = new FileWriter(new File(fileName), false);  
             writer.close();
             
