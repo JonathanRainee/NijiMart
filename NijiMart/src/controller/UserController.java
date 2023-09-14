@@ -258,7 +258,13 @@ public class UserController {
             					String a = Character.toString(cart.charAt(i));
             					String b = Character.toString(cart.charAt(i+1));
             					String id = a+b;
+            					System.out.println(id);
 								Product prod = pc.searchProduct(id);
+								if(prod == null) {
+									System.out.println("empty");
+								}else {
+									System.out.println(" g empty");
+								}
 								p.add(prod);
 							}
             				

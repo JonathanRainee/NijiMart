@@ -216,18 +216,12 @@ public class ProductController {
 	public void deleteProduct(String id) {
 		Product prod = searchProduct(id);
 		int i = 0;
-//		for (Product p : Engine.products) {
-//			System.out.println(p.getProductID()+"| |"+id+"|");
-//			if(p.equals(prod)) {
-//				Engine.products.remove(prod);
-//			}
-//		}
 		
 		Iterator<Product> iter = Engine.products.iterator();
 		while (iter.hasNext()) {
 		    Product p = iter.next();
 		    if (p.equals(prod)) {
-		    	iter.remove(); // Safe removal using the iterator
+		    	iter.remove();
 		        System.out.println("rimuvv");
 		    }
 		    System.out.println("loll");
@@ -239,30 +233,15 @@ public class ProductController {
 			System.out.println("g kososng");
 		}
 		
-//		for (Product p : Engine.currUser.getCart()) {
-//			if(p.getProductID().equals(id)) {
-//				Engine.currUser.getCart().remove(i);
-//				System.out.println("hehe");
-//			}
-//			System.out.println("loll");
-//			i++;
-//		}
-		
 		Iterator<Product> iterator = Engine.currUser.getCart().iterator();
 		while (iterator.hasNext()) {
 		    Product p = iterator.next();
 		    if (p.getProductID().equals(id)) {
-		        iterator.remove(); // Safe removal using the iterator
+		        iterator.remove();
 		        System.out.println("hehe");
 		    }
 		    System.out.println("loll");
 		}
-		
-		for (Product p : Engine.products) {
-			System.out.println(p.getProductID()+" "+p.getName());
-			
-		}
-
 		rewriteProductFile(Engine.products);
 		
 	}

@@ -471,7 +471,7 @@ public class ProductView {
 					u.printNormal("Are you sure you want to delete this laptop? (\"Y\" to proceed \"N\" to cancel | case sensitive): ");
 					conf = u.nextLine();
 					if(conf.equals("Y")) {
-						u.printTab("Product deleted succesfully!");
+						u.printTab("Laptop deleted succesfully!");
 						u.pressEnter();
 						pc.deleteProduct(opt);
 						return;
@@ -484,11 +484,67 @@ public class ProductView {
 	}
 	
 	public void deleteShirtView() {
-		
+		String opt = "";
+		Product toDel = null;
+		String conf = "a";
+		do {
+			u.cls();
+			viewLaptop();
+			opt = deletePrompt("shirt");
+			toDel = pc.searchProduct(opt);
+			if(opt.equals("0")) {
+				break;
+			}
+			if(toDel == null) {
+				u.printNormal("Please input the right shirt ID!");
+				u.nextLine();
+			}else {
+				do {
+					u.printNormal("Are you sure you want to delete this shirt? (\"Y\" to proceed \"N\" to cancel | case sensitive): ");
+					conf = u.nextLine();
+					if(conf.equals("Y")) {
+						u.printTab("Shirt deleted succesfully!");
+						u.pressEnter();
+						pc.deleteProduct(opt);
+						return;
+					}else if(conf.equals("N")) {
+						return;
+					}
+				} while (!conf.equals("Y") && !conf.equals("N"));
+			}
+		} while (!opt.equals("0")|| toDel == null || conf.equals("N"));
 	}
 	
 	public void deleteNovelView() {
-		
+		String opt = "";
+		Product toDel = null;
+		String conf = "a";
+		do {
+			u.cls();
+			viewLaptop();
+			opt = deletePrompt("novel");
+			toDel = pc.searchProduct(opt);
+			if(opt.equals("0")) {
+				break;
+			}
+			if(toDel == null) {
+				u.printNormal("Please input the right novel ID!");
+				u.nextLine();
+			}else {
+				do {
+					u.printNormal("Are you sure you want to delete this novel? (\"Y\" to proceed \"N\" to cancel | case sensitive): ");
+					conf = u.nextLine();
+					if(conf.equals("Y")) {
+						u.printTab("Novel deleted succesfully!");
+						u.pressEnter();
+						pc.deleteProduct(opt);
+						return;
+					}else if(conf.equals("N")) {
+						return;
+					}
+				} while (!conf.equals("Y") && !conf.equals("N"));
+			}
+		} while (!opt.equals("0")|| toDel == null || conf.equals("N"));
 	}
 	
 	public void deleteProduct() {
@@ -924,6 +980,30 @@ public class ProductView {
 		
 		Novel novel = new Novel("0", name, price, description, author, genre, publicationYear, crimeType, detective, suspenseLevel);
 		return novel;
+	}
+	
+	public void checkOut() {
+		String opt = "z";
+		int total = -9;
+		do {
+			u.cls();
+			if(Engine.currUser.getCart().isEmpty()) {
+				System.out.println("kosong");
+			}else {
+				System.out.println(" ga kososng");
+			}
+			for (Product p : Engine.currUser.getCart()) {
+				
+//				System.out.println(p.getClass());
+				u.printTab("Product name: "+p.getName()+", Quantity: "+p.getQuantity()+", Price: "+p.getPrice()+"$, Total: "+p.getQuantity()*p.getPrice()+"$");
+				total += p.getPrice()*p.getQuantity();
+				System.out.println(total);
+			}
+			u.printTab("Your total is: "+total+"$");
+			u.printNormal("Input \"Y\" to procees and \"N\" to cancel (case insensitive): ");
+			opt = u.nextLine();
+			
+		} while (!opt.equalsIgnoreCase("y") && !opt.equalsIgnoreCase("n"));
 	}
 
 }

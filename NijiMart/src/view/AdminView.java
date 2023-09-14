@@ -1,6 +1,8 @@
 package view;
 
 import controller.UserController;
+import main.Engine;
+import model.Product;
 import model.User;
 import util.Util;
 
@@ -25,6 +27,9 @@ public class AdminView {
 	public void adminMenu(User user) {
 		int menuOpt = -9;
 		do {
+//			for (Product p : Engine.currUser.getCart()) {
+//				System.out.println(p.getName());
+//			}
 			u.cls();
 			u.printTab("Hello, "+user.getUsername());
 			u.printTab("=====================");
@@ -55,7 +60,7 @@ public class AdminView {
 					pv.addProductToCart();
 					break;
 				case 6:
-					
+					pv.checkOut();
 					break;
 				case 7:					
 					uc.logout();
