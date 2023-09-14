@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.concurrent.atomic.LongAccumulator;
 
 import main.Engine;
@@ -44,12 +45,12 @@ public class ProductController {
 	}
 	
 	public void addProduct(Product product) {
-		Engine.producst.add(product);
+		Engine.products.add(product);
 		writeFile(product);
 	}
 	
 	public void addProd(Product prod) {
-		Engine.producst.add(prod);
+		Engine.products.add(prod);
 	}
 	
 	public void writeFile(Product product) {
@@ -170,7 +171,7 @@ public class ProductController {
 	}
 	
 	public Product searchProduct(String ID) {
-		for (Product p : Engine.producst) {
+		for (Product p : Engine.products) {
 			if(p.getProductID().equals(ID)) {
 				return p;
 			}
@@ -210,6 +211,60 @@ public class ProductController {
 			((Novel)destination).setSuspenseLevel(((Novel)source).getSuspenseLevel());
 			
 		}
+	}
+	
+	public void deleteProduct(String id) {
+		Product prod = searchProduct(id);
+		int i = 0;
+//		for (Product p : Engine.products) {
+//			System.out.println(p.getProductID()+"| |"+id+"|");
+//			if(p.equals(prod)) {
+//				Engine.products.remove(prod);
+//			}
+//		}
+		
+		Iterator<Product> iter = Engine.products.iterator();
+		while (iter.hasNext()) {
+		    Product p = iter.next();
+		    if (p.equals(prod)) {
+		    	iter.remove(); // Safe removal using the iterator
+		        System.out.println("rimuvv");
+		    }
+		    System.out.println("loll");
+		}
+		
+		if(Engine.currUser.getCart().isEmpty()) {
+			System.out.println("kosong");
+		}else {
+			System.out.println("g kososng");
+		}
+		
+//		for (Product p : Engine.currUser.getCart()) {
+//			if(p.getProductID().equals(id)) {
+//				Engine.currUser.getCart().remove(i);
+//				System.out.println("hehe");
+//			}
+//			System.out.println("loll");
+//			i++;
+//		}
+		
+		Iterator<Product> iterator = Engine.currUser.getCart().iterator();
+		while (iterator.hasNext()) {
+		    Product p = iterator.next();
+		    if (p.getProductID().equals(id)) {
+		        iterator.remove(); // Safe removal using the iterator
+		        System.out.println("hehe");
+		    }
+		    System.out.println("loll");
+		}
+		
+		for (Product p : Engine.products) {
+			System.out.println(p.getProductID()+" "+p.getName());
+			
+		}
+
+		rewriteProductFile(Engine.products);
+		
 	}
 	
 

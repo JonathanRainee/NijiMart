@@ -17,7 +17,7 @@ public class Engine {
 	UserView uv = UserView.getInstance();
 	public static User currUser = null;
 	public static ArrayList<User> users = new ArrayList<>();
-	public static ArrayList<Product> producst = new ArrayList<>();
+	public static ArrayList<Product> products = new ArrayList<>();
 
 	public Engine() {
 		int opt = -9;

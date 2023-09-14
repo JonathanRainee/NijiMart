@@ -49,7 +49,7 @@ public class AdminView {
 					pv.updateProduct();
 					break;
 				case 4:
-					
+					pv.deleteProduct();
 					break;
 				case 5:
 					pv.addProductToCart();

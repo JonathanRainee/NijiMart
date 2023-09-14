@@ -180,7 +180,7 @@ public class ProductView {
 		u.printTab("+======+================+===========+============+==============+");
 		u.printTab("|  ID  |      Name      |   Price   |  Warranty  |   Processor  |");
 		u.printTab("+======+================+===========+============+==============+");
-		for (Product p: Engine.producst) {
+		for (Product p: Engine.products) {
 			if(p instanceof Laptop) {
 				System.out.printf("\t|  %-3s |  %-13s |  $%-7d |%6dY     |     %-9s|\n", p.getProductID(), p.getName(), p.getPrice(), ((Laptop) p).getWarrantyPeriod(), ((Laptop) p).getProcessor());
 			}else{
@@ -198,7 +198,7 @@ public class ProductView {
 		u.printTab("+======+================+===========+==========+==============+");
 		u.printTab("|  ID  |      Name      |   Price   |   Size   |   Material   |");
 		u.printTab("+======+================+===========+==========+==============+");
-		for (Product p: Engine.producst) {
+		for (Product p: Engine.products) {
 			if(p instanceof Shirt) {
 				System.out.printf("\t|  %-3s |  %-13s |  $%-7d |%6s    |    %-9s |\n", p.getProductID(), p.getName(), p.getPrice(), ((Shirt) p).getSize(), ((Shirt) p).getMaterial());
 			}else{
@@ -216,7 +216,7 @@ public class ProductView {
 		u.printTab("+======+================+===========+=====================+============+");
 		u.printTab("|  ID  |      Name      |   Price   |       Author        |    Genre   |");
 		u.printTab("+======+================+===========+=====================+============+");
-		for (Product p: Engine.producst) {
+		for (Product p: Engine.products) {
 			if(p instanceof Novel) {
 				System.out.printf("\t|  %-3s |  %-13s |  $%-7d |  %15s    |  %-9s |\n", p.getProductID(), p.getName(), p.getPrice(), ((Novel) p).getAuthor(), ((Novel) p).getGenre());
 			}else{
@@ -274,6 +274,13 @@ public class ProductView {
 		return id;
 	}
 	
+	public String deletePrompt(String type) {
+		String id = "0";
+		u.printNormal("Insert the "+type+" ID you want to delete (0 to cancel): ");
+		id = u.nextLine();
+		return id;
+	}
+	
 	public void updateLaptopView() {
 		String opt = "";
 		Product destination = null;
@@ -297,7 +304,7 @@ public class ProductView {
 			}
 			source = updateLaptopPrompt();
 			pc.updateProduct(destination, source);
-			pc.rewriteProductFile(Engine.producst);
+			pc.rewriteProductFile(Engine.products);
 		} while (!opt.equals("0") || destination == null);
 	}
 	
@@ -324,7 +331,7 @@ public class ProductView {
 			}
 			source = updateShirtPrompt();
 			pc.updateProduct(destination, source);
-			pc.rewriteProductFile(Engine.producst);
+			pc.rewriteProductFile(Engine.products);
 		} while (!opt.equals("0") || destination == null);
 	}
 	
@@ -351,7 +358,7 @@ public class ProductView {
 			}
 			source = updateNovelPrompt();
 			pc.updateProduct(destination, source);
-			pc.rewriteProductFile(Engine.producst);
+			pc.rewriteProductFile(Engine.products);
 		} while (!opt.equals("0") || destination == null);
 	}
 	
@@ -443,6 +450,47 @@ public class ProductView {
 		} while (opt != 4);
 	}
 	
+	
+	public void deleteLaptopView() {
+		String opt = "";
+		Product toDel = null;
+		String conf = "a";
+		do {
+			u.cls();
+			viewLaptop();
+			opt = deletePrompt("laptop");
+			toDel = pc.searchProduct(opt);
+			if(opt.equals("0")) {
+				break;
+			}
+			if(toDel == null) {
+				u.printNormal("Please input the right laptop ID!");
+				u.nextLine();
+			}else {
+				do {
+					u.printNormal("Are you sure you want to delete this laptop? (\"Y\" to proceed \"N\" to cancel | case sensitive): ");
+					conf = u.nextLine();
+					if(conf.equals("Y")) {
+						u.printTab("Product deleted succesfully!");
+						u.pressEnter();
+						pc.deleteProduct(opt);
+						return;
+					}else if(conf.equals("N")) {
+						return;
+					}
+				} while (!conf.equals("Y") && !conf.equals("N"));
+			}
+		} while (!opt.equals("0")|| toDel == null || conf.equals("N"));
+	}
+	
+	public void deleteShirtView() {
+		
+	}
+	
+	public void deleteNovelView() {
+		
+	}
+	
 	public void deleteProduct() {
 		int opt = -9;
 		do {
@@ -458,19 +506,20 @@ public class ProductView {
 			u.nextLine();
 			switch (opt) {
 			case 1:
-				
+				deleteLaptopView();
 				break;
 			case 2:
-				
+				deleteShirtView();
 				break;
 			case 3:
-				
+				deleteNovelView();
 				break;
 			case 4:
 				return;
 			}
 		} while (opt != 4);
 	}
+	
 	
 	public void productAdded() {
 		u.printTab("Product added sucessfully!");
