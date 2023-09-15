@@ -1,5 +1,7 @@
 package view;
 
+import java.util.ArrayList;
+
 import javax.swing.text.html.CSS;
 
 import controller.ProductController;
@@ -95,6 +97,7 @@ public class ProductView {
 			}else if(q >= 1) {
 				Laptop l = new Laptop(p.getProductID(), p.getName(), p.getPrice(), p.getDescription(), q, ((Laptop)p).getScreenSize(), ((Laptop)p).getRAM(), ((Laptop)p).getProcessor(), ((Laptop)p).getWarrantyPeriod(), ((Laptop)p).getOperatingSystem());
 				addToCart(l);
+				return;
 			}else if(q == 0){
 				return;
 			}
@@ -120,6 +123,7 @@ public class ProductView {
 			}else if(q >= 1) {
 				Shirt s = new Shirt(p.getProductID(), p.getName(), p.getPrice(), p.getDescription(), q, ((Shirt)p).getSize(), ((Shirt)p).getColor(), ((Shirt)p).getMaterial(), ((Shirt)p).getSleeveLength(), ((Shirt)p).getCollarType(), ((Shirt)p).getFabricPattern());
 				addToCart(s);
+				return;
 			}else if(q == 0){
 				return;
 			}
@@ -145,6 +149,7 @@ public class ProductView {
 			}else if(q >= 1) {
 				Novel n = new Novel(p.getProductID(), p.getName(), p.getPrice(), p.getDescription(), q, ((Novel)p).getAuthor(), ((Novel)p).getGenre(), ((Novel)p).getPublicationYear(), ((Novel)p).getCrimeType(), ((Novel)p).getDetective(), ((Novel)p).getSuspenseLevel());
 				addToCart(n);
+				return;
 			}else if(q == 0){
 				return;
 			}
@@ -984,24 +989,28 @@ public class ProductView {
 	
 	public void checkOut() {
 		String opt = "z";
-		int total = -9;
 		do {
+			int total = 0;
 			u.cls();
 			if(Engine.currUser.getCart().isEmpty()) {
-				System.out.println("kosong");
+				u.printTab("Your cart is currently empty");
+				u.pressEnter();
+				return;
 			}else {
-				System.out.println(" ga kososng");
+				for (Product p : Engine.currUser.getCart()) {
+					int i = 0;
+					int q = Engine.currUser.getProductQuantity().get(i++);
+					u.printTab("Product name: "+p.getName()+", Quantity: "+q+", Price: "+p.getPrice()+"$, Total: "+q*p.getPrice()+"$");
+					total += p.getPrice()*q;
+				}
+				u.printTab("Your total is: "+total+"$");
+				u.printNormal("Input \"Y\" to procees and \"N\" to cancel (case insensitive): ");
+				opt = u.nextLine();
+				uc.checkout();
+				u.pressEnter();
+				uc.rewriteFile(Engine.users);
+				return;
 			}
-			for (Product p : Engine.currUser.getCart()) {
-				
-//				System.out.println(p.getClass());
-				u.printTab("Product name: "+p.getName()+", Quantity: "+p.getQuantity()+", Price: "+p.getPrice()+"$, Total: "+p.getQuantity()*p.getPrice()+"$");
-				total += p.getPrice()*p.getQuantity();
-				System.out.println(total);
-			}
-			u.printTab("Your total is: "+total+"$");
-			u.printNormal("Input \"Y\" to procees and \"N\" to cancel (case insensitive): ");
-			opt = u.nextLine();
 			
 		} while (!opt.equalsIgnoreCase("y") && !opt.equalsIgnoreCase("n"));
 	}

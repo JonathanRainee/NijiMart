@@ -94,11 +94,13 @@ public class UserView {
 		if(uc.getUserCount() == 1) {
 			Admin adm = new Admin(username, password, 0, cart, prodQ);
 			Engine.users.add(adm);
+//			uc.rewriteFile(Engine.users);
 			uc.writeFile(adm);
 		}else if(uc.getUserCount() > 1){
 			Regular reg = new Regular(username, password, 0, cart, prodQ, 0);
 			Engine.users.add(reg);					
-			uc.writeFile(reg);
+			uc.rewriteFile(Engine.users);
+//			uc.writeFile(reg);
 		}
 		int newUserCount = uc.getUserCount() + 1;
 		uc.setUserCount(newUserCount);

@@ -27,9 +27,6 @@ public class AdminView {
 	public void adminMenu(User user) {
 		int menuOpt = -9;
 		do {
-//			for (Product p : Engine.currUser.getCart()) {
-//				System.out.println(p.getName());
-//			}
 			u.cls();
 			u.printTab("Hello, "+user.getUsername());
 			u.printTab("=====================");

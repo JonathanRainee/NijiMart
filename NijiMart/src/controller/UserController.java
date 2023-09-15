@@ -96,74 +96,6 @@ public class UserController {
         }
 	}
 	
-	public void writeFile(ArrayList<User> users) {
-		try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
-			for (User u : users) {
-				if(u instanceof Admin) {
-					String itemIDS = "-";
-					String productQuantity = "-";
-					if(!u.getCart().isEmpty()) {
-						itemIDS = "";
-						for (Product p : u.getCart()) {
-							itemIDS += p.getProductID();
-						}
-					}
-					if(!u.getProductQuantity().isEmpty()) {
-						productQuantity = "";
-						for (Integer i : u.getProductQuantity()) {
-							productQuantity += i;
-						}
-					}
-					writer.write(u.getUsername()+","+u.getPassword()+","+u.getPoint()+","+itemIDS+","+productQuantity+"\n");
-				}else if(u instanceof Regular) {
-					String itemIDS = "-";
-					String productQuantity = "-";
-					if(!u.getCart().isEmpty()) {
-						itemIDS = "";
-						for (Product p : u.getCart()) {
-							itemIDS += p.getProductID();
-						}
-					}
-					if(!u.getProductQuantity().isEmpty()) {
-						productQuantity = "";
-						for (Integer i : u.getProductQuantity()) {
-							productQuantity += i;
-						}
-					}
-					writer.write(u.getUsername()+","+u.getPassword()+","+u.getPoint()+","+itemIDS+","+productQuantity+","+((Regular)u).getLoyaltyPoint()+"\n");
-				}
-			}
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-	}
-	
-	public void writeAllUser(ArrayList<User> users) {
-		try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
-			for (User user : Engine.users) {
-				if(user instanceof Admin) {
-					String itemIDS = "-";
-					if(!user.getCart().isEmpty()) {
-						for (Product p : user.getCart()) {
-							itemIDS += p.getProductID();
-						}
-					}
-					writer.write(user.getUsername()+","+user.getPassword()+","+user.getPoint()+","+itemIDS+"\n");
-				}else if(user instanceof Regular) {
-					String itemIDS = "-";
-					if(!user.getCart().isEmpty()) {
-						for (Product p : user.getCart()) {
-							itemIDS += p.getProductID();
-						}
-					}
-					writer.write(user.getUsername()+","+user.getPassword()+","+user.getPoint()+","+itemIDS+","+((Regular)user).getLoyaltyPoint()+"\n");
-				}
-			}
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-	}
-	
 	public void rewriteFile(ArrayList<User> users) {
         try {
             FileWriter writer = new FileWriter(new File(fileName), false);  
@@ -174,6 +106,7 @@ public class UserController {
         }
         
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
+//            writer.write("users,users\n");
 			for (User u : users) {
 				if(u instanceof Admin) {
 					String itemIDS = "-";
@@ -189,7 +122,7 @@ public class UserController {
 						for (Integer i : u.getProductQuantity()) {
 							productQuantity += i.toString();
 						}
-					};
+					}
 					writer.write(u.getUsername()+","+u.getPassword()+","+u.getPoint()+","+itemIDS+","+productQuantity+"\n");
 				}else if(u instanceof Regular) {
 					String itemIDS = "-";
@@ -206,18 +139,14 @@ public class UserController {
 							productQuantity += i;
 						}
 					}
-					writer.write(u.getUsername()+","+u.getPassword()+","+u.getPoint()+","+itemIDS+","+productQuantity+","+((Regular)u).getLoyaltyPoint()+"\n");
+					writer.append(u.getUsername()+","+u.getPassword()+","+u.getPoint()+","+itemIDS+","+productQuantity+","+((Regular)u).getLoyaltyPoint()+"\n");
 				}
 			}
         } catch (IOException e) {
             e.printStackTrace();
         }
 	}
-	
-	public void updateFile(ArrayList<User> users) {
-		rewriteFile(users);
-	}
-	
+
 	public void initUser() {
 		try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String line;
@@ -260,18 +189,12 @@ public class UserController {
             					String id = a+b;
             					System.out.println(id);
 								Product prod = pc.searchProduct(id);
-								if(prod == null) {
-									System.out.println("empty");
-								}else {
-									System.out.println(" g empty");
-								}
 								p.add(prod);
 							}
             				
             				for(int i = 0; i < productQuantity.length(); i++) {
                 				q.add(Integer.parseInt(Character.toString(productQuantity.charAt(i))));
-                			}
-            				
+            				}
             				
             				Engine.users.add(new Admin(username, password, point, p, q)); 
             			}
@@ -292,6 +215,11 @@ public class UserController {
 		Engine.currUser.getCart().add(p) ;
 		Engine.currUser.getProductQuantity().add(p.getQuantity());
 		rewriteFile(Engine.users);
+	}
+	
+	public void checkout() {
+		Engine.currUser.getCart().clear();
+		Engine.currUser.getProductQuantity().clear();
 	}
 
 }
