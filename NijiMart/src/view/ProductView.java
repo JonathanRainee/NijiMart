@@ -78,16 +78,45 @@ public class ProductView {
 		u.pressEnter();
 	}
 	
-	public void viewLaptopDetail(Product p) {
-		int q = -9;
-		do {
-			u.cls();
+	public void viewProdDetail(Product p) {
+		u.cls();
+		if(p instanceof Laptop) {
 			viewPDetail(p);
 			u.printTab("Laptop screensize: "+((Laptop)p).getScreenSize()+"'");
 			u.printTab("Laptop RAM: "+((Laptop)p).getRAM()+"GB");
 			u.printTab("Laptop processor: "+((Laptop)p).getProcessor());
 			u.printTab("Laptop warranty period: "+((Laptop)p).getWarrantyPeriod()+" year");
 			u.printTab("Laptop operating system: "+((Laptop)p).getOperatingSystem());
+		}else if(p instanceof Shirt) {
+			viewPDetail(p);
+			u.printTab("Shirt size: "+((Shirt)p).getSize());
+			u.printTab("Shirt color: "+((Shirt)p).getColor());
+			u.printTab("Shirt material: "+((Shirt)p).getMaterial());
+			u.printTab("Shirt sleeve length: "+((Shirt)p).getSleeveLength());
+			u.printTab("Shirt collar type: "+((Shirt)p).getCollarType());
+			u.printTab("Shirt fabric pattern: "+((Shirt)p).getFabricPattern());
+		}else if(p instanceof Novel) {
+			viewPDetail(p);
+			u.printTab("Novel author: "+((Novel)p).getAuthor());
+			u.printTab("Novel genre: "+((Novel)p).getGenre());
+			u.printTab("Novel publication year: "+((Novel)p).getPublicationYear());
+			u.printTab("Novel crime type: "+((Novel)p).getCrimeType());
+			u.printTab("Novel detective: "+((Novel)p).getDetective());
+			u.printTab("Novel suspense level: "+((Novel)p).getSuspenseLevel());
+		}
+	}
+	
+	public void viewLaptopDetailCart(Product p) {
+		int q = -9;
+		do {
+			viewProdDetail(p);
+//			u.cls();
+//			viewPDetail(p);
+//			u.printTab("Laptop screensize: "+((Laptop)p).getScreenSize()+"'");
+//			u.printTab("Laptop RAM: "+((Laptop)p).getRAM()+"GB");
+//			u.printTab("Laptop processor: "+((Laptop)p).getProcessor());
+//			u.printTab("Laptop warranty period: "+((Laptop)p).getWarrantyPeriod()+" year");
+//			u.printTab("Laptop operating system: "+((Laptop)p).getOperatingSystem());
 			u.printNormal("Input the quantity you want to add to your cart (0 to cancel): ");
 			q = u.nextInt();
 			u.nextLine();
@@ -104,16 +133,17 @@ public class ProductView {
 		} while (q != 0);
 	}
 	
-	public void viewShirtDetail(Product p) {
+	public void viewShirtDetailCart(Product p) {
 		int q = -9;
 		do {
-			viewPDetail(p);
-			u.printTab("Shirt size: "+((Shirt)p).getSize());
-			u.printTab("Shirt color: "+((Shirt)p).getColor());
-			u.printTab("Shirt material: "+((Shirt)p).getMaterial());
-			u.printTab("Shirt sleeve length: "+((Shirt)p).getSleeveLength());
-			u.printTab("Shirt collar type: "+((Shirt)p).getCollarType());
-			u.printTab("Shirt fabric pattern: "+((Shirt)p).getFabricPattern());
+			viewProdDetail(p);
+//			viewPDetail(p);
+//			u.printTab("Shirt size: "+((Shirt)p).getSize());
+//			u.printTab("Shirt color: "+((Shirt)p).getColor());
+//			u.printTab("Shirt material: "+((Shirt)p).getMaterial());
+//			u.printTab("Shirt sleeve length: "+((Shirt)p).getSleeveLength());
+//			u.printTab("Shirt collar type: "+((Shirt)p).getCollarType());
+//			u.printTab("Shirt fabric pattern: "+((Shirt)p).getFabricPattern());
 			u.printNormal("Input the quantity you want to add to your cart (0 to cancel): ");
 			q = u.nextInt();
 			u.nextLine();
@@ -130,16 +160,17 @@ public class ProductView {
 		} while (q != 0);
 	}
 	
-	public void viewNovelDetail(Product p) {
+	public void viewNovelDetailCart(Product p) {
 		int q = -9;
 		do {
-			viewPDetail(p);
-			u.printTab("Novel author: "+((Novel)p).getAuthor());
-			u.printTab("Novel genre: "+((Novel)p).getGenre());
-			u.printTab("Novel publication year: "+((Novel)p).getPublicationYear());
-			u.printTab("Novel crime type: "+((Novel)p).getCrimeType());
-			u.printTab("Novel detective: "+((Novel)p).getDetective());
-			u.printTab("Novel suspense level: "+((Novel)p).getSuspenseLevel());
+			viewProdDetail(p);
+//			viewPDetail(p);
+//			u.printTab("Novel author: "+((Novel)p).getAuthor());
+//			u.printTab("Novel genre: "+((Novel)p).getGenre());
+//			u.printTab("Novel publication year: "+((Novel)p).getPublicationYear());
+//			u.printTab("Novel crime type: "+((Novel)p).getCrimeType());
+//			u.printTab("Novel detective: "+((Novel)p).getDetective());
+//			u.printTab("Novel suspense level: "+((Novel)p).getSuspenseLevel());
 			u.printNormal("Input the quantity you want to add to your cart (0 to cancel): ");
 			q = u.nextInt();
 			u.nextLine();
@@ -156,29 +187,58 @@ public class ProductView {
 		} while (q != 0);
 	}
 	
-	public void viewProductDetail(Product p) {
+	public void viewProductDetailCart(Product p) {
 		if(p instanceof Laptop) {
-			viewLaptopDetail(p);
+			viewLaptopDetailCart(p);
 		}else if(p instanceof Shirt) {
-			viewShirtDetail(p);
+			viewShirtDetailCart(p);
 		}else if(p instanceof Novel) {
-			viewNovelDetail(p);
+			viewNovelDetailCart(p);
 		}
 	}
 	
-	public void productDetailPrompt(String type) {
-		Product p;
+	public void productDetailPromptCart(String type) {
+		Product p = null;
+		do {
 			u.printNormal("To see the "+type+" detail please input the "+"type"+" ID (0 to cancel): ");
 			id = u.nextLine();
 			if(id.equals("0")) {
 				return;
 			}else {
 				p = pc.searchProduct(id);
-				viewProductDetail(p);
 			}
+			
+			if(p != null) {
+				viewProductDetailCart(p);
+				
+			}
+		} while (p == null);
 	}
 	
-	public void viewLaptop() {
+	public void productDetailPrompt(String type) {
+		Product p;
+		do {
+			u.printNormal("To see the "+type+" detail please input the "+"type"+" ID (0 to cancel): ");
+			id = u.nextLine();
+			if(id.equals("0")) {
+				return;
+			}else {
+				p = pc.searchProduct(id);
+				viewProdDetail(p);
+			}
+			
+			if(p != null) {
+				viewDetail(p);
+			}
+		} while (p == null);
+	}
+	
+	public void viewDetail(Product p) {
+		viewProdDetail(p);
+//		u.pressEnter();
+	}
+	
+	public void viewLaptopCart() {
 		u.cls();
 		u.printTab("+======+================+===========+============+==============+");
 		u.printTab("|                            NijiMart                           |");
@@ -193,6 +253,62 @@ public class ProductView {
 			}
 		}
 		u.printTab("+======+================+===========+============+==============+");
+		productDetailPromptCart("laptop");
+		
+	}
+	
+	public void viewShirtCart() {
+		u.cls();
+		u.printTab("+======+================+===========+==========+==============+");
+		u.printTab("|                           NijiMart                          |");
+		u.printTab("+======+================+===========+==========+==============+");
+		u.printTab("|  ID  |      Name      |   Price   |   Size   |   Material   |");
+		u.printTab("+======+================+===========+==========+==============+");
+		for (Product p: Engine.products) {
+			if(p instanceof Shirt) {
+				System.out.printf("\t|  %-3s |  %-13s |  $%-7d |%6s    |    %-9s |\n", p.getProductID(), p.getName(), p.getPrice(), ((Shirt) p).getSize(), ((Shirt) p).getMaterial());
+			}else{
+				continue;
+			}
+		}
+		u.printTab("+======+================+===========+==========+==============+");
+		productDetailPromptCart("shirt");
+	}
+	public void viewNovelCart() {
+		u.cls();
+		u.printTab("+======+================+===========+=====================+============+");
+		u.printTab("|                               NijiMart                               |");
+		u.printTab("+======+================+===========+=====================+============+");
+		u.printTab("|  ID  |      Name      |   Price   |       Author        |    Genre   |");
+		u.printTab("+======+================+===========+=====================+============+");
+		for (Product p: Engine.products) {
+			if(p instanceof Novel) {
+				System.out.printf("\t|  %-3s |  %-13s |  $%-7d |  %15s    |  %-9s |\n", p.getProductID(), p.getName(), p.getPrice(), ((Novel) p).getAuthor(), ((Novel) p).getGenre());
+			}else{
+				continue;
+			}
+		}
+		u.printTab("+======+================+===========+=====================+============+");
+		productDetailPromptCart("novel");
+	}
+	
+	public void viewLaptop() {
+		u.cls();
+		System.out.println("view laptop");
+		u.printTab("+======+================+===========+============+==============+");
+		u.printTab("|                            NijiMart                           |");
+		u.printTab("+======+================+===========+============+==============+");
+		u.printTab("|  ID  |      Name      |   Price   |  Warranty  |   Processor  |");
+		u.printTab("+======+================+===========+============+==============+");
+		for (Product p: Engine.products) {
+			if(p instanceof Laptop) {
+				System.out.printf("\t|  %-3s |  %-13s |  $%-7d |%6dY     |     %-9s|\n", p.getProductID(), p.getName(), p.getPrice(), ((Laptop) p).getWarrantyPeriod(), ((Laptop) p).getProcessor());
+			}else{
+				continue;
+			}
+		}
+		u.printTab("+======+================+===========+============+==============+");
+		productDetailPrompt("laptop");
 		
 	}
 	
@@ -211,7 +327,7 @@ public class ProductView {
 			}
 		}
 		u.printTab("+======+================+===========+==========+==============+");
-		
+		productDetailPrompt("shirt");
 	}
 	
 	public void viewNovel() {
@@ -229,13 +345,13 @@ public class ProductView {
 			}
 		}
 		u.printTab("+======+================+===========+=====================+============+");
-		
+		productDetailPrompt("novel");
 	}
 	
 	public void addLaptopView() {
 		do {
-			viewLaptop();
-			productDetailPrompt("laptop");
+			viewLaptopCart();
+			productDetailPromptCart("laptop");
 			
 		} while (!id.equals("0"));
 		
@@ -243,8 +359,8 @@ public class ProductView {
 	
 	public void addShirtView() {
 		do {
-			viewShirt();
-			productDetailPrompt("shirt");
+			viewShirtCart();
+			productDetailPromptCart("shirt");
 			
 		} while (!id.equals("0"));
 		
@@ -252,8 +368,8 @@ public class ProductView {
 	
 	public void addNovelView() {
 		do {
-			viewNovel();
-			productDetailPrompt("novel");
+			viewNovelCart();
+			productDetailPromptCart("novel");
 		} while (!id.equals("0"));
 	}
 	
@@ -292,7 +408,7 @@ public class ProductView {
 		Product source = null;
 		do {
 			u.cls();
-			viewLaptop();
+			viewLaptopCart();
 			do {
 				opt = updatePrompt("laptop");
 				destination = pc.searchProduct(opt);
@@ -319,7 +435,7 @@ public class ProductView {
 		Product source = null;
 		do {
 			u.cls();
-			viewShirt();
+			viewShirtCart();
 			opt = updatePrompt("shirt");
 			do {
 				destination = pc.searchProduct(opt);	
@@ -346,7 +462,7 @@ public class ProductView {
 		Product source = null;
 		do {
 			u.cls();
-			viewNovel();
+			viewNovelCart();
 			opt = updatePrompt("novel");
 			do {
 				destination = pc.searchProduct(opt);
@@ -396,6 +512,7 @@ public class ProductView {
 			}
 		} while (opt != 4);
 	}
+
 	
 	public void viewProduct() {
 		int opt = -9;
@@ -411,17 +528,17 @@ public class ProductView {
 			opt = u.nextInt();
 			u.nextLine();
 			switch (opt) {
-			case 1:
-				viewLaptopEnter();
-				break;
-			case 2:
-				viewShirtEnter();
-				break;
-			case 3:
-				viewNovelEnter();
-				break;
-			case 4:
-				return;
+				case 1:
+					viewLaptopEnter();
+					break;
+				case 2:
+					viewShirtEnter();
+					break;
+				case 3:
+					viewNovelEnter();
+					break;
+				case 4:
+					return;
 			}
 		} while (opt != 4);
 	}
@@ -462,7 +579,7 @@ public class ProductView {
 		String conf = "a";
 		do {
 			u.cls();
-			viewLaptop();
+			viewLaptopCart();
 			opt = deletePrompt("laptop");
 			toDel = pc.searchProduct(opt);
 			if(opt.equals("0")) {
@@ -494,7 +611,7 @@ public class ProductView {
 		String conf = "a";
 		do {
 			u.cls();
-			viewLaptop();
+			viewLaptopCart();
 			opt = deletePrompt("shirt");
 			toDel = pc.searchProduct(opt);
 			if(opt.equals("0")) {
@@ -526,7 +643,7 @@ public class ProductView {
 		String conf = "a";
 		do {
 			u.cls();
-			viewLaptop();
+			viewLaptopCart();
 			opt = deletePrompt("novel");
 			toDel = pc.searchProduct(opt);
 			if(opt.equals("0")) {

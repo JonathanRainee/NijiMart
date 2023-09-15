@@ -17,7 +17,7 @@ import util.Util;
 
 public class UserController {
 	
-	private int userCount = 0;
+	public static int userCount = 0;
 	private String fileName = "users.csv";
 	private static UserController instance;
 	private ProductController pc = ProductController.getInstance();;
@@ -97,16 +97,15 @@ public class UserController {
 	}
 	
 	public void rewriteFile(ArrayList<User> users) {
-        try {
-            FileWriter writer = new FileWriter(new File(fileName), false);  
-            writer.close();
-            
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+		try {
+			FileWriter writer = new FileWriter(new File(fileName), false);  
+			writer.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
         
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
-//            writer.write("users,users\n");
+        	writer.write("username,password,point,cart,quantity,loyaltypoint\n");
 			for (User u : users) {
 				if(u instanceof Admin) {
 					String itemIDS = "-";
@@ -142,6 +141,7 @@ public class UserController {
 					writer.append(u.getUsername()+","+u.getPassword()+","+u.getPoint()+","+itemIDS+","+productQuantity+","+((Regular)u).getLoyaltyPoint()+"\n");
 				}
 			}
+			writer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -150,8 +150,14 @@ public class UserController {
 	public void initUser() {
 		try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String line;
+            boolean skipFirstLine = true;
             
             while ((line = br.readLine()) != null) {
+            	if (skipFirstLine) {
+                    skipFirstLine = false;
+                    continue;
+                }
+            	
             	if (!line.trim().isEmpty()) {
             		ArrayList<Product> p = new ArrayList<>();
             		ArrayList<Integer> q = new ArrayList<>();
@@ -187,7 +193,6 @@ public class UserController {
             					String a = Character.toString(cart.charAt(i));
             					String b = Character.toString(cart.charAt(i+1));
             					String id = a+b;
-            					System.out.println(id);
 								Product prod = pc.searchProduct(id);
 								p.add(prod);
 							}

@@ -48,7 +48,7 @@ public class RegularView {
 					
 					break;
 				case 4:
-					
+					pv.checkOut();
 					break;
 				case 5:
 					uc.logout();

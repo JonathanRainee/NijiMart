@@ -78,6 +78,7 @@ public class UserView {
 			}
 			if(unique) {
 				u.printTab("Username must be unique");
+				u.nextLine();
 			}
 		} while (username.length() < 5 || username.length() > 20 || unique);
 		
@@ -91,19 +92,20 @@ public class UserView {
 		
 		ArrayList<Product> cart = new ArrayList<>();
 		ArrayList<Integer> prodQ = new ArrayList<>();
+		int newUserCount = uc.getUserCount() + 1;
+		uc.setUserCount(newUserCount);
 		if(uc.getUserCount() == 1) {
 			Admin adm = new Admin(username, password, 0, cart, prodQ);
 			Engine.users.add(adm);
-//			uc.rewriteFile(Engine.users);
-			uc.writeFile(adm);
+			uc.rewriteFile(Engine.users);
+//			uc.writeFile(adm);
 		}else if(uc.getUserCount() > 1){
 			Regular reg = new Regular(username, password, 0, cart, prodQ, 0);
-			Engine.users.add(reg);					
+			Engine.users.add(reg);		
 			uc.rewriteFile(Engine.users);
 //			uc.writeFile(reg);
 		}
-		int newUserCount = uc.getUserCount() + 1;
-		uc.setUserCount(newUserCount);
+		UserController.userCount++;
 		u.printTab("User registered succesfully..");
 		u.nextLine();
 	}
