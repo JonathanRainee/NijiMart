@@ -2,7 +2,11 @@ package model;
 
 import java.util.ArrayList;
 
+import main.Engine;
+
 public class Admin extends User{
+	
+	public Admin() {}
 	
 	public Admin(String username, String password, int point, ArrayList<Product> cart) {
 		super(username, password, point, cart);
@@ -21,9 +25,12 @@ public class Admin extends User{
 	}
 
 	@Override
-	public void getCurrPoint() {
+	public int getProdPoint() {
 		// TODO Auto-generated method stub
-		super.getCurrPoint();
+		int point = 0;
+		for (Product p : Engine.currUser.getCart()) {
+			point += p.getPrice() * 0.03;
+		}
+		return point;
 	}
-
 }

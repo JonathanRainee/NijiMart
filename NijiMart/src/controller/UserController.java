@@ -181,7 +181,7 @@ public class UserController {
                 			for (int i = 0; i < cart.length(); i += 2) {
                 				String id = cart.charAt(i)+cart.charAt(i+1)+"";
 								Product prod = pc.searchProduct(id);
-								System.out.println("ini id: "+prod.getProductID());
+//								System.out.println("ini id: "+prod.getProductID());
 								p.add(prod);
 							}
                 			Engine.users.add(new Regular(username, password, point, p, q, loyaltyPoint));
@@ -232,6 +232,19 @@ public class UserController {
 	}
 	
 	public void checkout() {
+		int point = 0;
+		int loyaltyPoint;
+		if(Engine.currUser instanceof Admin) {
+			Admin adm = new Admin();
+			point = adm.getProdPoint();
+		}else if(Engine.currUser instanceof Regular) {
+			Regular reg = new Regular();
+			point = reg.getProdPoint();
+			loyaltyPoint = reg.genLoyaltyPoint();
+			System.out.println(loyaltyPoint);
+			((Regular)Engine.currUser).setLoyaltyPoint(loyaltyPoint);
+		}
+		Engine.currUser.setPoint(point);
 		Engine.currUser.getCart().clear();
 		Engine.currUser.getProductQuantity().clear();
 	}

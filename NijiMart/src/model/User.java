@@ -41,6 +41,11 @@ public class User {
 	public void setProductQuantity(ArrayList<Integer> productQuantity) {
 		this.productQuantity = productQuantity;
 	}
+	
+	public User() {
+		
+	}
+	
 	public User(String username, String password, int point, ArrayList<Product> cart) {
 		super();
 		this.username = username;
@@ -73,8 +78,8 @@ public class User {
 		
 	}
 	
-	public void getCurrPoint() {
-		
+	public int getProdPoint() {
+		return 0;
 	}
 	
 }

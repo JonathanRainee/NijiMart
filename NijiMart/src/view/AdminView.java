@@ -58,10 +58,10 @@ public class AdminView {
 					pv.addProductToCart();
 					break;
 				case 6:
-					pv.checkOut();
+					pv.viewCart();
 					break;
 				case 7:
-					pv.viewCart();
+					pv.checkOut();
 					break;
 				case 8:					
 					uc.logout();
