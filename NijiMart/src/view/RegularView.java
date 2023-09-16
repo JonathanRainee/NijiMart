@@ -54,7 +54,7 @@ public class RegularView {
 					uc.logout();
 					break;
 			}
-		} while (menuOpt != 4);
+		} while (menuOpt != 5);
 	}
 	
 }

@@ -174,14 +174,15 @@ public class UserController {
             			if(cart.equals("-")) {
             				Engine.users.add(new Regular(username, password, point, p, q, loyaltyPoint));
                 		}else if(!cart.equals("-")){
+                			System.out.println("reg");
                 			for(int i = 0; i < productQuantity.length(); i++) {
+                				System.out.println(Integer.parseInt(Character.toString(productQuantity.charAt(i))));
                 				q.add((int) productQuantity.charAt(i));
                 			}
                 			
                 			for (int i = 0; i < cart.length(); i += 2) {
                 				String id = cart.charAt(i)+cart.charAt(i+1)+"";
 								Product prod = pc.searchProduct(id);
-//								System.out.println("ini id: "+prod.getProductID());
 								p.add(prod);
 							}
                 			Engine.users.add(new Regular(username, password, point, p, q, loyaltyPoint));
@@ -190,6 +191,7 @@ public class UserController {
             			if(cart.equals("-")) {
             				Engine.users.add(new Admin(username, password, point, p, q));          	
             			}else if(!cart.equals("-")){
+            				System.out.println("adm");
             				for (int i = 0; i < cart.length(); i += 2) {
             					String a = Character.toString(cart.charAt(i));
             					String b = Character.toString(cart.charAt(i+1));
@@ -201,12 +203,11 @@ public class UserController {
 								}else {
 									System.out.println("prod g null");									
 								}
-
-//								System.out.println("ini id: "+prod.getProductID());
 								p.add(prod);
 							}
             				
             				for(int i = 0; i < productQuantity.length(); i++) {
+            					System.out.println(Integer.parseInt(Character.toString(productQuantity.charAt(i))));
                 				q.add(Integer.parseInt(Character.toString(productQuantity.charAt(i))));
             				}
             				

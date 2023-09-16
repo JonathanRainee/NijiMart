@@ -215,6 +215,33 @@ public class ProductController {
 		}
 	}
 	
+	public boolean laptopExist() {
+		for (Product p : Engine.products) {
+			if(p instanceof Laptop) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean shirtExist() {
+		for (Product p : Engine.products) {
+			if(p instanceof Shirt) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean novelExist() {
+		for (Product p : Engine.products) {
+			if(p instanceof Novel) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public void deleteProduct(String id) {
 		Product prod = searchProduct(id);
 		ArrayList<Integer> idx = new ArrayList<>();
@@ -236,7 +263,6 @@ public class ProductController {
 		    int index = itr.next();
 		    for (int j = 0; j < idx.size(); j++) {
 				if(counter == idx.get(j)) {
-					System.out.println("idx: "+idx.get(j)+" counter: "+counter);
 					itr.remove();
 				}
 		    counter++;

@@ -63,21 +63,21 @@ public class UserView {
 		String username;
 		String password;
 		boolean unique;
+		u.cls();
+		u.printTab("Register");
+		u.printTab("========");
 		do {
-			u.cls();
-			u.printTab("Register");
-			u.printTab("========");
 			u.printNormal("Input your username (username length has to be greater than 5 and less than 20 characters and must be unique|| press 0 to cancel): ");
 			username = u.nextLine();
 			if (username.equals("0")) {
-				break;
+				return;
 			}
 			unique = uc.isUnique(username);
 			if(username.length() < 5 || username.length() > 20) {
 				u.printTab("Username length has to be greater than 5 and less than 20 characters");
 			}
 			if(unique) {
-				u.printTab("Username must be unique");
+				u.printNormal("Username must be unique!");
 				u.nextLine();
 			}
 		} while (username.length() < 5 || username.length() > 20 || unique);
@@ -86,7 +86,7 @@ public class UserView {
 			u.printNormal("Input your password (password length has to be greater than 8 and less than 20 characters and have to be alphanumeric and have to be unique || press 0 to cancel): ");
 			password = u.nextLine();
 			if (password.equals("0")) {
-				break;
+				return;
 			}
 		} while (password.length() < 8 || password.length() > 20 || !u.isAlNum(password));
 		
