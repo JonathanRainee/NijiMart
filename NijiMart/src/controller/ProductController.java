@@ -91,6 +91,7 @@ public class ProductController {
 	}
 	
 	public void initProduct() {
+		Engine.products.clear();
 		try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String line;
             
@@ -171,6 +172,7 @@ public class ProductController {
 	}
 	
 	public Product searchProduct(String ID) {
+		
 		for (Product p : Engine.products) {
 			if(p.getProductID().equals(ID)) {
 				return p;
@@ -215,34 +217,42 @@ public class ProductController {
 	
 	public void deleteProduct(String id) {
 		Product prod = searchProduct(id);
+		ArrayList<Integer> idx = new ArrayList<>();
 		int i = 0;
-		
-		Iterator<Product> iter = Engine.products.iterator();
-		while (iter.hasNext()) {
-		    Product p = iter.next();
-		    if (p.equals(prod)) {
-		    	iter.remove();
-		        System.out.println("rimuvv");
-		    }
-		    System.out.println("loll");
-		}
-		
-		if(Engine.currUser.getCart().isEmpty()) {
-			System.out.println("kosong");
-		}else {
-			System.out.println("g kososng");
-		}
+		int counter = 0;
 		
 		Iterator<Product> iterator = Engine.currUser.getCart().iterator();
 		while (iterator.hasNext()) {
 		    Product p = iterator.next();
 		    if (p.getProductID().equals(id)) {
 		        iterator.remove();
-		        System.out.println("hehe");
+		        idx.add(i);
 		    }
-		    System.out.println("loll");
+		    i++;
+		}
+		
+		Iterator<Integer> itr = Engine.currUser.getProductQuantity().iterator();
+		while (itr.hasNext()) {
+		    int index = itr.next();
+		    for (int j = 0; j < idx.size(); j++) {
+				if(counter == idx.get(j)) {
+					System.out.println("idx: "+idx.get(j)+" counter: "+counter);
+					itr.remove();
+				}
+		    counter++;
+		    }
+		}
+		
+		
+		Iterator<Product> iter = Engine.products.iterator();
+		while (iter.hasNext()) {
+		    Product p = iter.next();
+		    if (p.equals(prod)) {
+		    	iter.remove();
+		    }
 		}
 		rewriteProductFile(Engine.products);
+		initProduct();
 		
 	}
 	

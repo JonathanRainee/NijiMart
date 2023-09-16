@@ -35,8 +35,9 @@ public class AdminView {
 			u.printTab("3. Update Product");			
 			u.printTab("4. Delete Product");
 			u.printTab("5. Add Product to Cart");
-			u.printTab("6. Checkout");
-			u.printTab("7. Logout");
+			u.printTab("6. Your Cart");
+			u.printTab("7. Checkout");
+			u.printTab("8. Logout");
 			u.printNormal(">> ");
 			menuOpt = u.nextInt();
 			u.nextLine();
@@ -59,51 +60,13 @@ public class AdminView {
 				case 6:
 					pv.checkOut();
 					break;
-				case 7:					
+				case 7:
+					pv.viewCart();
+					break;
+				case 8:					
 					uc.logout();
 					break;
 				}
-		} while (menuOpt != 7);
-	}
-	
-	public void addProduct() {
-		int opt;
-		do {
-			u.cls();
-			u.printTab("Add Product");
-			u.printTab("===========");
-			u.printTab("1. Electronics");
-			u.printTab("2. Clothing");
-			u.printTab("3. Books");
-			u.printTab("4. Cancel");
-			u.printTab(">> ");
-			opt = u.nextInt();
-			u.nextLine();
-			switch (opt) {
-				case 1:
-					
-					break;
-				case 2:
-					
-					break;
-				case 3:
-					
-					break;
-			}
-		} while (opt != 4);
-	}
-	
-	private void addElectronics() {
-		u.cls();
-	}
-	
-	private void addClothing() {
-		u.cls();
-		
-	}
-	
-	private void addBooks() {
-		u.cls();
-		
+		} while (menuOpt != 8);
 	}
 }

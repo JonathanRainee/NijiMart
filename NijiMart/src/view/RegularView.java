@@ -45,7 +45,7 @@ public class RegularView {
 					pv.viewProduct();
 					break;
 				case 3:
-					
+					pv.viewCart();
 					break;
 				case 4:
 					pv.checkOut();

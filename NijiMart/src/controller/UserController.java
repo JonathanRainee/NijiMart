@@ -181,6 +181,7 @@ public class UserController {
                 			for (int i = 0; i < cart.length(); i += 2) {
                 				String id = cart.charAt(i)+cart.charAt(i+1)+"";
 								Product prod = pc.searchProduct(id);
+								System.out.println("ini id: "+prod.getProductID());
 								p.add(prod);
 							}
                 			Engine.users.add(new Regular(username, password, point, p, q, loyaltyPoint));
@@ -193,7 +194,15 @@ public class UserController {
             					String a = Character.toString(cart.charAt(i));
             					String b = Character.toString(cart.charAt(i+1));
             					String id = a+b;
+            					System.out.println("ini id hhehe: "+id+"hhh");
 								Product prod = pc.searchProduct(id);
+								if(prod == null) {
+									System.out.println("prod null");
+								}else {
+									System.out.println("prod g null");									
+								}
+
+//								System.out.println("ini id: "+prod.getProductID());
 								p.add(prod);
 							}
             				
