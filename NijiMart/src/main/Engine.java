@@ -21,6 +21,7 @@ public class Engine {
 
 	public Engine() {
 		int opt = -9;
+		u.createFile();
 		pc.initProduct();
 		uc.initUser();
 		do {

@@ -1,5 +1,8 @@
 package util;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Util {
@@ -161,5 +164,33 @@ public class Util {
 	public void pressEnter() {
 		printTab("Press enter to continue...");
 		nextLine();
+	}
+	
+	
+	public void createFile() {
+		String prodFileName = "products.csv";
+		File prodFile = new File(prodFileName);
+		String userFileName = "users.csv";
+		File userFile = new File(userFileName);
+		
+		if (prodFile.exists()) {
+			return;
+		} else {
+			try (FileWriter csvWriter = new FileWriter(prodFile)) {
+				
+			} catch (IOException e) {
+				printTab("Error creating empty CSV file: " + e.getMessage());
+			}
+		}
+		
+		if (userFile.exists()) {
+			return;
+		} else {
+			try (FileWriter csvWriter = new FileWriter(userFile)) {
+				
+			} catch (IOException e) {
+				printTab("Error creating empty CSV file: " + e.getMessage());
+			}
+		}
 	}
 }

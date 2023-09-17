@@ -24,7 +24,6 @@ public class UserController {
 	private Util u = Util.getInstance();
 	
 	private UserController() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public int getUserCount() {
