@@ -30,15 +30,33 @@ public class Util {
 	}
 	
 	public String nextLine() {
-		return scan.nextLine();
+		try {
+			return scan.nextLine();			
+		} catch (Exception e) {
+			printTab("Please input a string");
+			// TODO: handle exception
+		}
+		return "";
 	}
 	
 	public Integer nextInt() {
-		return scan.nextInt();
+		try {
+			return scan.nextInt();			
+		} catch (Exception e) {
+			printTab("Please input an interger!");
+			// TODO: handle exception
+		}
+		return 1;
 	}
 	
 	public float nextFloat() {
-		return scan.nextFloat();
+		try {
+			return scan.nextFloat();			
+		} catch (Exception e) {
+			printTab("Please input a float!");
+			// TODO: handle exception
+		}
+		return 1.0f;
 	}
 	
 	public void cls() {
@@ -125,6 +143,15 @@ public class Util {
 			return true;
 		}
 		return false;
+	}
+	
+	public boolean equalToIgnoreCase(String a, String value) {
+		boolean  valid;
+		if(!value.equalsIgnoreCase(a)) {
+			return false;
+		}else{
+			return true;
+		}
 	}
 	
 	public boolean equalToIgnoreCase(String a, String b, String c, String value) {

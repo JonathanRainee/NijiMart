@@ -1257,18 +1257,29 @@ public class ProductView {
 				u.pressEnter();
 				return;
 			}else {
+				u.printTab("============================================================+");
+				u.printTab("|                          NijiMart                         |");
+				u.printTab("+================+===============+===========+==============+");
+				u.printTab("|      Name      |    Quantity   |   Price   |     Total    |");
+				u.printTab("+================+===============+===========+==============+");
 				for (Product p : Engine.currUser.getCart()) {
 					int i = 0;
 					int q = Engine.currUser.getProductQuantity().get(i++);
-					u.printTab("Product name: "+p.getName()+", Quantity: "+q+", Price: "+p.getPrice()+"$, Total: "+q*p.getPrice()+"$");
+					System.out.printf("\t|    %-11s |       %-7d |   %-7d |     $%-8d|\n",p.getName(), q, p.getPrice(), (q*p.getPrice()));
 					total += p.getPrice()*q;
 				}
+				u.printTab("+================+===============+===========+==============+");
 				u.printTab("Your total is: "+total+"$");
 				u.printNormal("Input \"Y\" to procees and \"N\" to cancel (case insensitive): ");
 				opt = u.nextLine();
-				uc.checkout();
-				u.pressEnter();
-				uc.rewriteFile(Engine.users);
+				if(u.equalToIgnoreCase("y", opt)) {
+					uc.checkout();
+					uc.rewriteFile(Engine.users);
+					u.pressEnter();					
+				}else {
+					u.pressEnter();					
+					return;
+				}
 				return;
 			}
 			
@@ -1285,11 +1296,17 @@ public class ProductView {
 			return;
 		}else {
 			int i = 0;
+			u.printTab("============================================================+");
+			u.printTab("|                          NijiMart                         |");
+			u.printTab("+================+===============+===========+==============+");
+			u.printTab("|      Name      |    Quantity   |   Price   |     Total    |");
+			u.printTab("+================+===============+===========+==============+");
 			for (Product p : Engine.currUser.getCart()) {
 				int q = Engine.currUser.getProductQuantity().get(i++);
-				u.printTab("Product name: "+p.getName()+", Quantity: "+q+", Price: "+p.getPrice()+"$, Total: "+q*p.getPrice()+"$");
+				System.out.printf("\t|    %-11s |       %-7d |   %-7d |     $%-8d|\n",p.getName(), q, p.getPrice(), (q*p.getPrice()));
 				total += p.getPrice()*q;
 			}
+			u.printTab("+================+===============+===========+==============+");
 			u.printTab("Your total is: "+total+"$");
 			u.pressEnter();
 			return;
