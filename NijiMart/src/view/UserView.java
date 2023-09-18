@@ -22,7 +22,6 @@ public class UserView {
 	private Util u = Util.getInstance();
 	
 	private UserView() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public static UserView getInstance() {
@@ -67,7 +66,7 @@ public class UserView {
 		u.printTab("Register");
 		u.printTab("========");
 		do {
-			u.printNormal("Input your username (username length has to be greater than 5 and less than 20 characters and must be unique|| press 0 to cancel): ");
+			u.printNormal("Input your username (username length 5-20 characters and unique | 0 to cancel): ");
 			username = u.nextLine();
 			if (username.equals("0")) {
 				return;
@@ -83,7 +82,7 @@ public class UserView {
 		} while (username.length() < 5 || username.length() > 20 || unique);
 		
 		do {
-			u.printNormal("Input your password (password length has to be greater than 8 and less than 20 characters and have to be alphanumeric and have to be unique || press 0 to cancel): ");
+			u.printNormal("Input your password (password length 8-20 characters and alphanumeric | 0 to cancel): ");
 			password = u.nextLine();
 			if (password.equals("0")) {
 				return;
@@ -98,12 +97,10 @@ public class UserView {
 			Admin adm = new Admin(username, password, 0, cart, prodQ);
 			Engine.users.add(adm);
 			uc.rewriteFile(Engine.users);
-//			uc.writeFile(adm);
 		}else if(uc.getUserCount() > 1){
 			Regular reg = new Regular(username, password, 0, cart, prodQ, 0);
 			Engine.users.add(reg);		
 			uc.rewriteFile(Engine.users);
-//			uc.writeFile(reg);
 		}
 		UserController.userCount++;
 		u.printTab("User registered succesfully..");
