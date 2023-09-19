@@ -234,7 +234,7 @@ public class ProductView {
 							continue;
 						}
 					}
-					u.printTab("+===============================================================+");			
+					u.printTab("+=============================================================+");		
 				}else {
 					noProduct("shirt");
 					return;
@@ -317,7 +317,7 @@ public class ProductView {
 				continue;
 			}
 		}
-		u.printTab("+===============================================================+");
+		u.printTab("+=============================================================+");
 	}
 	
 	public void viewNovelCart() {
@@ -374,6 +374,7 @@ public class ProductView {
 			}
 		}
 		u.printTab("+=============================================================+");
+		
 		productDetail("shirt");
 	}
 	
@@ -432,6 +433,7 @@ public class ProductView {
 			}
 		}
 		u.printTab("+=============================================================+");
+		
 	}
 	
 	public void viewNvl() {
@@ -1044,7 +1046,7 @@ public class ProductView {
 			if(!u.StartsWithIgnoreCase("Mr. ", "Mrs. ", detective)) {
 				u.printTab("Detective name must starts with \"Mr. \" / \"Mrs. \" (case sensitive)!");
 			}
-		} while (!u.StartsWithIgnoreCase("Mr.", "Mrs.", detective));
+		} while (!u.StartsWithIgnoreCase("Mr. ", "Mrs. ", detective));
 		
 		do {
 			u.printNormal("Input suspense level (Suspense level 1-5): ");
@@ -1075,7 +1077,7 @@ public class ProductView {
 			u.printNormal("Input laptop screen size (laptop screen size 12.5-18.5): ");
 			screenSize = u.nextFloat();
 			if(!u.gtAndlt(12.5f, 18.5f, screenSize)) {
-				u.printTab("Laptop screen size has to be greater than 12.5 and less than 18.5!");
+				u.printTab("Laptop screen size has to be greater than or equal to 12.5 and less than or equal to 18.5!");
 			}
 		} while (!u.gtAndlt(12.5f, 18.5f, screenSize));
 		

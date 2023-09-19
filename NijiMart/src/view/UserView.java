@@ -126,7 +126,115 @@ public class UserView {
 		}
 	}
 	
-	
+	public void exit() {
+		try {
+			u.cls();
+			System.out.println("                                   .........-----------......                                       ");
+			Thread.sleep(20); 
+			System.out.println("                                  ...-..--------.......-#+++++---...                                ");
+			Thread.sleep(20);
+			System.out.println("                         .......-----...... ..   .......--++++###++---.......                       ");
+			Thread.sleep(20); 
+			System.out.println("                        .-.-----...----.......---.......    ....--+###+-++----....                  ");
+			Thread.sleep(20);      
+			System.out.println("                   .....---.........-+-.....--+--.          ....   .--....---..---...               ");
+			Thread.sleep(20);     
+			System.out.println("                 .--++--.. ...... ...-..                     .--....  ......--.-....--... .         ");
+			Thread.sleep(20);          
+			System.out.println("              ..--+--..  ...   ..-----.        ..   ....  ....-...   .........-+-.  .-.....         ");
+			Thread.sleep(20);         
+			System.out.println("            ..--+-..   ..   ..----...  ...  .               .  ..       .......---.  ..             ");
+			Thread.sleep(20);            
+			System.out.println("           .--+-.. ....  ..---....   ..                       ..   .      ........--                ");
+			Thread.sleep(20);   
+			System.out.println("         .--++-......  .---..   ......                                .     .......-.               ");
+			Thread.sleep(20);              
+			System.out.println("        .--++....... .---.    .       .     .    .  ....     .          .    ..... .-.              ");
+			Thread.sleep(20);            
+			System.out.println("       ---+-...... .---.    .                    ...    .                    .... .  --             ");
+			Thread.sleep(20);                   
+			System.out.println("      ---+-........--..... .               ......   ....                       ... .. --.....       ");
+			Thread.sleep(20);                        
+			System.out.println(" .  .-++#+---.....-.  ........  ..       .       .-+#@##-.                      ........+. .-.      ");
+			Thread.sleep(20);                                  
+			System.out.println(". .-++++-------+------.-........  .   ... ..---++#@@@@@#-.                        ...+-..-  .-.     ");
+			Thread.sleep(20);                                        
+			System.out.println(".-+-+...........-------...............    .-+#@@@@@@@@@#. .                       ...-+-.-- .-.     ");
+			Thread.sleep(20);                                            
+			System.out.println("-#-.-.........  .-.....---........    ..-+##@@@@@@@@#+-. .  .                      ...-+-.-..-.     ");
+			Thread.sleep(20);                                                 
+			System.out.println(".-++.........   ........---........--+##@@@@@@@@++-.    .                           ...-+..+-.      ");
+			Thread.sleep(20);                                       
+			System.out.println("  .+.........   .  .......+--...-+#@@@@@@@@@@#+.          ..       .            ..  ....+-.--       ");
+			Thread.sleep(20);                                                      
+			System.out.println("  .+ ........     .........---+#@@@@@@@@@@#+-. ..-++--....    ......         ....  ..----+..--      ");
+			Thread.sleep(20);                          
+			System.out.println("   -- .....-. .............-+#@@@@@@@@@@#------+#@@@@@@@##-...       .........  ..---+-.-+-..-.     ");
+			Thread.sleep(20);                                                      
+			System.out.println("    -......-. ......... .-#@@@@@@@@@@#-. .-+#@@@@@@@@@@@@@@@@##+--..         ..---.......+-..--     ");
+			Thread.sleep(20);                                                  
+			System.out.println("    -....... ...........--#@@@@@@@@+.  .......-++####@@@@@@@@@@@@@@##++------...-.  .....+-..--     ");
+			Thread.sleep(20);                                          
+			System.out.println("    +..--...  ..........-.+@@@@@@@@@#####+-..      ...-+#@@@@@@@@@@@@@@@@@@+-. ....  ....+-..--     ");
+			Thread.sleep(20);                                        
+			System.out.println("    --++--..  .......  .--##@@@@@@@@@@@@@@@#++--...     ..--+#@@@@@@@@@@@+.  ... .   ....+-..--..   ");
+			Thread.sleep(20);                                                      
+			System.out.println("    ++--....  ...............--+##@@@@@@@@@@@@@@@@#+-.    .-+#@@@@@@@@#+.. ..    .   ...-+..---..   ");
+			Thread.sleep(20);                                               
+			System.out.println("   .+-.....  .   ..................--+++##@@@@@@@@#-...-++#@@@@@@@#++..             ....--..---..   ");
+			Thread.sleep(20);                                               
+			System.out.println("   .++.....     ..................     ...-++##+--. .+#@@@@@@@@@#-.    ..           ........--...   ");
+			Thread.sleep(20);                                                 
+			System.out.println("   .-+-....     ..................................-+#@@@@@@@##+-.  ....         .   .. .. ..-- ..   ");
+			Thread.sleep(20);                                                     
+			System.out.println("    --+.....   . .............................-+#@@@@@@@@#+-.    .              .   .. ....--- ..   ");
+			Thread.sleep(20);                                                 
+			System.out.println("    ----.....      .......  ................+#@@@@@@@@##+.   ...   .                 ......--. ..   ");
+			Thread.sleep(20);                                                    
+			System.out.println("   ....-- ......  .    ...  ............--+#@@@@@@@@+-... ...                       ......--.  .-.  ");
+			Thread.sleep(20);                                                          
+			System.out.println("   .. ..-. ...++.  ..       ........   .-#@@@@@@@#-. ......... ...                ........--   .-   ");
+			Thread.sleep(20);                                           
+			System.out.println("        .-. ...++.       .     ...    ...-+@@@#-.. .................            ...++....-+......   ");
+			Thread.sleep(20);                                                       
+			System.out.println("        .-..--.++-. ..              .......-......................        .   ...#+-----+.....      ");
+			Thread.sleep(20);                                                          
+			System.out.println("         -....--..-.     ..          .....    ......................         ...-#+..-....          ");
+			Thread.sleep(20);                                                       
+			System.out.println("         .-....-+.   .....            ........  ....................  ..    ..-++..--.              ");
+			Thread.sleep(20);                                                 
+			System.out.println("          .--....--.........     .  .........     .................       ..-++-.--.                ");
+			Thread.sleep(20);                                                              
+			System.out.println("            .-.....-+...........    .. ... ..         ...........        ...-+-.--                  ");
+			Thread.sleep(20);                                            
+			System.out.println("             .--...----.............   .....  ..  ...........       ..........+.+.                  ");
+			Thread.sleep(20);                                              
+			System.out.println("               .---.-----...............-.....               .. ..--++++......-+-...                ");
+			Thread.sleep(20);                                                 
+			System.out.println("                 ..--+-----....-... ....-.....        .....-++++..-++--.....--.--..                 ");
+			Thread.sleep(20);                           
+			System.out.println("                 ..-++--..----.....-....--..  ......-++++#####++.  .....---.....                    ");
+			Thread.sleep(20);                        
+			System.out.println("                ....-------....--..-....-......-+++--+++++--........--...   ..                      ");
+			Thread.sleep(20);                     
+			System.out.println("                .   ..---..--+-----..---+-.....--..............--....                               ");
+			Thread.sleep(20);                                             
+			System.out.println("                       ..----..........+-.--.........-..---....                                     ");
+			Thread.sleep(20);                                                                                                           
+			System.out.println("                                     .--   ....#-......                                             ");
+			Thread.sleep(20);                                                        
+			System.out.println("                                   . -+....   -#.                                                   ");
+			Thread.sleep(20);                                                                  
+			System.out.println("                                     .+-...--++-..                                                  ");
+			Thread.sleep(20);      
+			System.out.println("                                    Bluejackets 22-1                                                "); 
+			Thread.sleep(20); 
+			System.out.println("            Alongside courage and perseverance, we shape and define our future.                     ");
+		    Thread.sleep(10*1000);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
 
 	
 	

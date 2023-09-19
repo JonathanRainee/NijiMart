@@ -181,7 +181,7 @@ public class Util {
 		String valNorm = value.toLowerCase();
 		if(!valNorm.startsWith(aNorm) && !value.startsWith(bNorm)) {
 			return false;
-		}else if(value.startsWith(aNorm) || value.startsWith(bNorm)){
+		}else if(valNorm.startsWith(aNorm) || valNorm.startsWith(bNorm)){
 			return true;
 		}			
 		

@@ -45,7 +45,7 @@ public class Engine {
 				uv.register();
 				break;
 			case 3:
-	
+				uv.exit();
 				break;
 			}
 		} while (opt != 3);
