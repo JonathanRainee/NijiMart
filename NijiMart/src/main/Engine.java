@@ -21,6 +21,7 @@ public class Engine {
 
 	public Engine() {
 		int opt = -9;
+		String input;
 		u.createFile();
 		pc.initProduct();
 		uc.initUser();
@@ -32,22 +33,30 @@ public class Engine {
 			u.printTab("2. Register");
 			u.printTab("3. Exit");
 			u.printNormal(">> ");
-			opt = u.nextInt();
-			u.nextLine();
-			
-			switch (opt) {
-			case 1:
-				u.cls();
-				uv.login();
-				break;
-			case 2:
-				u.cls();
-				uv.register();
-				break;
-			case 3:
-				uv.exit();
-				break;
+			input = u.nextLine();
+			if(u.isInteger(input)) {
+				opt = Integer.parseInt(input);
+				switch (opt) {
+					case 1:
+						u.cls();
+						uv.login();
+					break;
+					case 2:
+						u.cls();
+						uv.register();
+					break;
+					case 3:
+						uv.exit();
+					break;
+					default:
+						u.printTab("invalid input");
+					break;
+				}
+			}else {
+				u.printTab("Please input an integer!");
+				u.nextLine();
 			}
+						
 		} while (opt != 3);
 	}
 

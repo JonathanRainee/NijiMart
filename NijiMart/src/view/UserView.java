@@ -87,7 +87,13 @@ public class UserView {
 			if (password.equals("0")) {
 				return;
 			}
-		} while (password.length() < 8 || password.length() > 20 || !u.isAlNum(password));
+			if(password.length() < 8 || password.length() > 20) {
+				u.printTab("Password length has to be greater than 8 and less than 20 characters");
+			}
+			if(!u.checkAlNum(password)) {
+				u.printTab("Password must be alphanumeric!");
+			}
+		} while (password.length() < 8 || password.length() > 20 || !u.checkAlNum(password));
 		
 		ArrayList<Product> cart = new ArrayList<>();
 		ArrayList<Integer> prodQ = new ArrayList<>();

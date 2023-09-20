@@ -12,7 +12,7 @@ public class Util {
 	}
 	
 	private static Util instance;
-	Scanner scan = new Scanner(System.in);
+	public static Scanner scan = new Scanner(System.in);
 	
 	public void printTab(String str) {
 		System.out.println("\t"+str);
@@ -34,6 +34,8 @@ public class Util {
 			return scan.nextLine();			
 		} catch (Exception e) {
 			printTab("Please input a string");
+			nextLine();
+			cls();
 			// TODO: handle exception
 		}
 		return "";
@@ -41,9 +43,13 @@ public class Util {
 	
 	public Integer nextInt() {
 		try {
-			return scan.nextInt();			
+			int i = scan.nextInt();
+			nextLine();
+			return i;
 		} catch (Exception e) {
 			printTab("Please input an interger!");
+//			nextLine();
+//			cls();
 			// TODO: handle exception
 		}
 		return 1;
@@ -65,6 +71,14 @@ public class Util {
 		}
 	}
 	
+	public void clearScreen() {
+	    try {
+	        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+	    } catch (IOException | InterruptedException e) {
+	        // Handle exceptions if necessary
+	    }
+	}
+	
 	public boolean isAlNum(String pass) {
 		if (pass == null || pass.isEmpty()) {
             return false;
@@ -77,6 +91,12 @@ public class Util {
         }
         return true;
 	}
+	
+	public static boolean checkAlNum(String input) {
+        boolean containsNumber = input.matches(".*\\d+.*");
+        boolean containsCharacter = input.matches(".*[a-zA-Z]+.*");
+        return containsNumber && containsCharacter;
+    }
 	
 	public boolean gtAndlt(int gt, int lt, int num) {
 		boolean valid;
@@ -165,7 +185,6 @@ public class Util {
 	}
 	
 	public boolean StartsWith(String a, String b, String value) {
-		boolean valid;
 		if(!value.startsWith(a) && !value.startsWith(b)) {
 			return false;
 		}else if(value.startsWith(a) || value.startsWith(b)){
@@ -175,16 +194,15 @@ public class Util {
 	}
 	
 	public boolean StartsWithIgnoreCase(String a, String b, String value) {
-		boolean valid;
-		String aNorm = a.toLowerCase();
-		String bNorm = b.toLowerCase();
-		String valNorm = value.toLowerCase();
-		if(!valNorm.startsWith(aNorm) && !value.startsWith(bNorm)) {
+		String aNorm = a.toLowerCase().trim();
+		String bNorm = b.toLowerCase().trim();
+		String valNorm = value.toLowerCase().trim();
+		if(!valNorm.startsWith(aNorm) && !valNorm.startsWith(bNorm)) {
 			return false;
-		}else if(valNorm.startsWith(aNorm) || valNorm.startsWith(bNorm)){
+		}
+		if(valNorm.startsWith(aNorm) || valNorm.startsWith(bNorm)){
 			return true;
-		}			
-		
+		}
 		return false;
 	}
 	
@@ -220,4 +238,15 @@ public class Util {
 			}
 		}
 	}
+	
+	
+	public boolean isInteger(String input) {
+        try {
+        	Integer i = Integer.parseInt(input);
+            if(i instanceof Integer) return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+		return false;
+    }
 }

@@ -213,7 +213,7 @@ public class ProductView {
 							continue;
 						}
 					}
-					u.printTab("+===============================================================+");					
+					u.printTab("+======+================+===========+============+==============+");				
 				}else {
 					noProduct("laptop");
 					return;
@@ -234,7 +234,7 @@ public class ProductView {
 							continue;
 						}
 					}
-					u.printTab("+=============================================================+");		
+					u.printTab("+======+================+===========+==========+==============+");	
 				}else {
 					noProduct("shirt");
 					return;
@@ -254,7 +254,7 @@ public class ProductView {
 							continue;
 						}
 					}
-					u.printTab("+===============================================================+");			
+					u.printTab("+======+================+===========+=====================+============+");		
 				}else {
 					noProduct("novel");
 					return;
@@ -296,7 +296,7 @@ public class ProductView {
 					continue;
 				}
 			}
-			u.printTab("+===============================================================+");	
+			u.printTab("+======+================+===========+============+==============+");	
 		}else {
 			noProduct("laptop");
 			
@@ -317,7 +317,7 @@ public class ProductView {
 				continue;
 			}
 		}
-		u.printTab("+=============================================================+");
+		u.printTab("+======+================+===========+==========+==============+");
 	}
 	
 	public void viewNovelCart() {
@@ -334,7 +334,7 @@ public class ProductView {
 				continue;
 			}
 		}
-		u.printTab("+======================================================================+");
+		u.printTab("+======+================+===========+=====================+============+");
 	}
 	
 	public void viewLaptop() {
@@ -352,7 +352,7 @@ public class ProductView {
 					continue;
 				}
 			}
-			u.printTab("+===============================================================+");
+			u.printTab("+======+================+===========+============+==============+");
 			productDetail("laptop");
 		}else {
 			noProduct("laptop");
@@ -373,7 +373,7 @@ public class ProductView {
 				continue;
 			}
 		}
-		u.printTab("+=============================================================+");
+		u.printTab("+======+================+===========+==========+==============+");
 		
 		productDetail("shirt");
 	}
@@ -392,7 +392,7 @@ public class ProductView {
 				continue;
 			}
 		}
-		u.printTab("+======================================================================+");
+		u.printTab("+======+================+===========+=====================+============+");
 		productDetail("novel");
 	}
 	
@@ -411,7 +411,7 @@ public class ProductView {
 					continue;
 				}
 			}
-			u.printTab("+===============================================================+");		
+			u.printTab("+======+================+===========+============+==============+");	
 		}else {
 			noProduct("laptop");
 			return;
@@ -432,7 +432,7 @@ public class ProductView {
 				continue;
 			}
 		}
-		u.printTab("+=============================================================+");
+		u.printTab("+======+================+===========+==========+==============+");
 		
 	}
 	
@@ -450,7 +450,7 @@ public class ProductView {
 				continue;
 			}
 		}
-		u.printTab("+======================================================================+");
+		u.printTab("+======+================+===========+=====================+============+");
 	}
 	
 	public void addLaptopToCartView() {
@@ -886,6 +886,7 @@ public class ProductView {
 		do {
 			u.printNormal("Input laptop screen size (laptop screen size 12.5-18.5): ");
 			screenSize = u.nextFloat();
+			u.nextLine();
 			if(!u.gtAndlt(12.5f, 18.5f, screenSize)) {
 				u.printTab("Laptop screen size has to be greater than 12.5 and less than 18.5!");
 			}
@@ -1002,7 +1003,7 @@ public class ProductView {
 		int publicationYear;
 		String crimeType;
 		String detective;
-		int suspenseLevel;
+		int suspenseLevel = -9;
 		
 		addProducts();
 		
@@ -1015,7 +1016,6 @@ public class ProductView {
 		} while (!u.StartsWith("Mr. ", "Mrs. ", author));
 		
 		do {
-			//bug mystery
 			u.printNormal("Input novel genre (novel genre name must be \"horror\" / \"thriller\" / \"mystery\" (case insensitive)): ");
 			genre = u.nextLine();
 			if(!u.equalToIgnoreCase("horror", "thriller", "mystery", genre)) {
@@ -1047,15 +1047,20 @@ public class ProductView {
 				u.printTab("Detective name must starts with \"Mr. \" / \"Mrs. \" (case sensitive)!");
 			}
 		} while (!u.StartsWithIgnoreCase("Mr. ", "Mrs. ", detective));
-		
 		do {
-			u.printNormal("Input suspense level (Suspense level 1-5): ");
-			suspenseLevel = u.nextInt();
+			u.printNormal("Input suspense level (Suspense level 5-10): ");
+			String tst = Integer.toString(u.nextInt());
+			Integer tst2 = Integer.parseInt(tst);
 			u.nextLine();
-			if(!u.gtAndlt(1, 5, suspenseLevel)) {
-				u.printTab("Suspense level has to be greater than 0 and less than or equal to 5!");
+			if(!u.gtAndlt(5, 10, tst2)) {
+				u.printTab("Suspense level has to be greater than 5 and less than or equal to 10!");
 			}
-		} while (!u.gtAndlt(1, 5, suspenseLevel));
+			if(u.gtAndlt(5, 10, tst2) && u.isInteger(tst)) {
+				suspenseLevel = tst2;
+				break;
+			}
+			
+		} while (true);
 		
 		pc.refreshID();
 		Novel novel = new Novel("N"+pc.productID, name, price, description, author, genre, publicationYear, crimeType, detective, suspenseLevel);
@@ -1076,6 +1081,7 @@ public class ProductView {
 		do {
 			u.printNormal("Input laptop screen size (laptop screen size 12.5-18.5): ");
 			screenSize = u.nextFloat();
+			u.nextLine();
 			if(!u.gtAndlt(12.5f, 18.5f, screenSize)) {
 				u.printTab("Laptop screen size has to be greater than or equal to 12.5 and less than or equal to 18.5!");
 			}
@@ -1190,6 +1196,7 @@ public class ProductView {
 		String crimeType;
 		String detective;
 		int suspenseLevel;
+		String tst;
 		
 		addProducts();
 		
@@ -1235,13 +1242,19 @@ public class ProductView {
 		} while (!u.StartsWithIgnoreCase("Mr. ", "Mrs. ", detective));
 		
 		do {
-			u.printNormal("Input suspense level (Suspense level 1-5): ");
-			suspenseLevel = u.nextInt();
+			u.printNormal("Input suspense level (Suspense level 5-10): ");
+			tst = Integer.toString(u.nextInt());
+			Integer tst2 = Integer.parseInt(tst);
 			u.nextLine();
-			if(!u.gtAndlt(1, 5, suspenseLevel)) {
-				u.printTab("Suspense level has to be greater than 0 and less than or equal to 5!");
+			if(!u.gtAndlt(5, 10, tst2)) {
+				u.printTab("Suspense level has to be greater than 5 and less than or equal to 10!");
 			}
-		} while (!u.gtAndlt(1, 5, suspenseLevel));
+			if(u.gtAndlt(5, 10, tst2) && u.isInteger(tst)) {
+				suspenseLevel = tst2;
+				break;
+			}
+			
+		} while (true);
 		
 		Novel novel = new Novel("0", name, price, description, author, genre, publicationYear, crimeType, detective, suspenseLevel);
 		return novel;

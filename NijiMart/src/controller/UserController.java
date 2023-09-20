@@ -231,7 +231,6 @@ public class UserController {
 			Regular reg = new Regular();
 			point = reg.getProdPoint();
 			loyaltyPoint = reg.genLoyaltyPoint();
-			System.out.println(loyaltyPoint);
 			((Regular)Engine.currUser).setLoyaltyPoint(loyaltyPoint);
 		}
 		Engine.currUser.setPoint(point);
