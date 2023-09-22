@@ -25,7 +25,8 @@ public class AdminView {
 	}
 	
 	public void adminMenu(User user) {
-		int menuOpt = -9;
+		String menuOpt;
+		int opt = -9;
 		do {
 			u.cls();
 			u.printTab("Hello, "+user.getUsername());
@@ -39,34 +40,39 @@ public class AdminView {
 			u.printTab("7. Checkout");
 			u.printTab("8. Logout");
 			u.printNormal(">> ");
-			menuOpt = u.nextInt();
-			u.nextLine();
-			switch (menuOpt) {
-				case 1:
-					pv.addProduct();
-					break;
-				case 2:
-					pv.viewProduct();
-					break;
-				case 3:
-					pv.updateProduct();
-					break;
-				case 4:
-					pv.deleteProduct();
-					break;
-				case 5:
-					pv.addProductToCart();
-					break;
-				case 6:
-					pv.viewCart();
-					break;
-				case 7:
-					pv.checkOut();
-					break;
-				case 8:					
-					uc.logout();
-					break;
+			menuOpt = u.nextLine();
+			if(u.isInteger(menuOpt)) {
+				opt = Integer.parseInt(menuOpt);
+				switch (opt) {
+					case 1:
+						pv.addProduct();
+						break;
+					case 2:
+						pv.viewProduct();
+						break;
+					case 3:
+						pv.updateProduct();
+						break;
+					case 4:
+						pv.deleteProduct();
+						break;
+					case 5:
+						pv.addProductToCart();
+						break;
+					case 6:
+						pv.viewCart();
+						break;
+					case 7:
+						pv.checkOut();
+						break;
+					case 8:					
+						uc.logout();
+						break;
 				}
-		} while (menuOpt != 8);
+			}else {
+				u.printTab("Please input an integer!");
+				u.nextLine();
+			}
+		} while (opt != 8);
 	}
 }

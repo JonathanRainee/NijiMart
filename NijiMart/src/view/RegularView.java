@@ -24,7 +24,8 @@ public class RegularView {
 	}
 
 	public void regularMenu(User user) {
-		int menuOpt = -9;
+		String menuOpt;
+		int opt = -9;
 		do {
 			u.cls();
 			u.printTab("Hello, "+user.getUsername());
@@ -35,26 +36,31 @@ public class RegularView {
 			u.printTab("4. Checkout");
 			u.printTab("5. Logout");
 			u.printNormal(">> ");
-			menuOpt = u.nextInt();
-			u.nextLine();
-			switch (menuOpt) {
-				case 1:
-					pv.addProductToCart();
-					break;
-				case 2:
-					pv.viewProduct();
-					break;
-				case 3:
-					pv.viewCart();
-					break;
-				case 4:
-					pv.checkOut();
-					break;
-				case 5:
-					uc.logout();
-					break;
+			menuOpt = u.nextLine();
+			if(u.isInteger(menuOpt)) {
+				opt = Integer.parseInt(menuOpt);
+				switch (opt) {
+					case 1:
+						pv.addProductToCart();
+						break;
+					case 2:
+						pv.viewProduct();
+						break;
+					case 3:
+						pv.viewCart();
+						break;
+					case 4:
+						pv.checkOut();
+						break;
+					case 5:
+						uc.logout();
+						break;
+					}				
+			}else {
+				u.printTab("Please input an integer!");
+				u.nextLine();
 			}
-		} while (menuOpt != 5);
+		} while (opt != 5);
 	}
 	
 }

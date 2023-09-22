@@ -44,7 +44,7 @@ public class Util {
 	public Integer nextInt() {
 		try {
 			int i = scan.nextInt();
-			nextLine();
+//			nextLine();
 			return i;
 		} catch (Exception e) {
 			printTab("Please input an interger!");

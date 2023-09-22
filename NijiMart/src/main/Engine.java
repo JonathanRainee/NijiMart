@@ -40,17 +40,17 @@ public class Engine {
 					case 1:
 						u.cls();
 						uv.login();
-					break;
+						break;
 					case 2:
 						u.cls();
 						uv.register();
-					break;
+						break;
 					case 3:
 						uv.exit();
-					break;
+						break;
 					default:
 						u.printTab("invalid input");
-					break;
+						break;
 				}
 			}else {
 				u.printTab("Please input an integer!");
