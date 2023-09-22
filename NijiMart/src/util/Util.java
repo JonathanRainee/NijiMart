@@ -194,9 +194,9 @@ public class Util {
 	}
 	
 	public boolean StartsWithIgnoreCase(String a, String b, String value) {
-		String aNorm = a.toLowerCase().trim();
-		String bNorm = b.toLowerCase().trim();
-		String valNorm = value.toLowerCase().trim();
+		String aNorm = a.toLowerCase();
+		String bNorm = b.toLowerCase();
+		String valNorm = value.toLowerCase();
 		if(!valNorm.startsWith(aNorm) && !valNorm.startsWith(bNorm)) {
 			return false;
 		}

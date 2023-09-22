@@ -909,7 +909,7 @@ public class ProductView {
 	public void addProducts() {
 		u.cls();
 		do {
-			u.printNormal("Input product name (product name 5-25 characters and unique): ");
+			u.printNormal("Input product name (product name 5-25 characters): ");
 			name = u.nextLine();
 			if(!u.gtAndlt(5, 25, name.length())) {
 				u.printTab("Product name length has to be greater than 5 and less than 25 characters!");
@@ -938,8 +938,9 @@ public class ProductView {
 		float screenSize;
 		int RAM;
 		String processor;
-		int warrantyPeriod;
+		int warrantyPeriod  = -9;
 		String operatingSystem;
+		String wp;
 		
 		addProducts();
 		
@@ -962,7 +963,7 @@ public class ProductView {
 		} while (!u.gtAndlt(4, 64, RAM));
 		
 		do {
-			u.printNormal("Input laptop processor (laptop processor has to be \"ontel\" / \"SLC\" (case sensitive)): ");
+			u.printNormal("Input laptop processor (\"ontel\" / \"SLC\" (case sensitive)): ");
 			processor = u.nextLine();
 			if(!u.equalTo("ontel", "SLC", processor)) {
 				u.printTab("Laptop RAM has to be \"ontel\" or \"SLC\"! (case sensitive)");
@@ -971,15 +972,19 @@ public class ProductView {
 		
 		do {
 			u.printNormal("Input laptop warranty period (laptop warranty period 1-5): ");
-			warrantyPeriod = u.nextInt();
-			u.nextLine();
-			if(!u.gtAndlt(1, 5, warrantyPeriod)) {
-				u.printTab("Laptop warranty period has to be greater than or equal to 1 and less than or equal to 5!");
+			wp = u.nextLine();
+			if(u.isInteger(wp)) {
+				warrantyPeriod = Integer.parseInt(wp);
+				if(!u.gtAndlt(1, 5, warrantyPeriod)) {
+					u.printTab("Laptop warranty period has to be greater than or equal to 1 and less than or equal to 5!");
+				}
+			}else {
+				u.printTab("Please input an integer!");
 			}
 		} while (!u.gtAndlt(1, 5, warrantyPeriod));
 		
 		do {
-			u.printNormal("Input laptop operating system (laptop operating system has to be \"penguin\" / \"jendela\" (case insensitive)): ");
+			u.printNormal("Input laptop operating system (\"penguin\" / \"jendela\" (case insensitive)): ");
 			operatingSystem = u.nextLine();
 			if(!u.equalToIgnoreCase("penguin", "jendela", operatingSystem)) {
 				u.printTab("Laptop operating system has to be \"penguin\" or \"jendela\"! (case insensitive)");
@@ -1003,7 +1008,7 @@ public class ProductView {
 		addProducts(); 
 		
 		do {
-			u.printNormal("Input shirt color (shirt color has to be \"black\" / \"white\" / \"pink\" (case sensitive)): ");
+			u.printNormal("Input shirt color (\"black\" / \"white\" / \"pink\" (case sensitive)): ");
 			color = u.nextLine();
 			if(!u.equalTo("black", "white", "pink", color)) {
 				u.printTab("Shirt color has to be \"black\" / \"white\" / \"pink\"! (case sensitive)");
@@ -1011,7 +1016,7 @@ public class ProductView {
 		} while (!u.equalTo("black", "white", "pink", color));
 		
 		do {
-			u.printNormal("Input shirt size (shirt color has to be \"s\" / \"m\" / \"l\" (case insensitive)): ");
+			u.printNormal("Input shirt size (\"s\" / \"m\" / \"l\" (case insensitive)): ");
 			size = u.nextLine();
 			if(!u.equalToIgnoreCase("s", "m", "l", size)) { 
 				u.printTab("Shirt color has to be \"s\" / \"m\" / \"l\"! (case insensitive)");
@@ -1019,7 +1024,7 @@ public class ProductView {
 		} while (!u.equalToIgnoreCase("s", "m", "l", size));
 		
 		do {
-			u.printNormal("Input shirt material (shirt material has to be \"cotton\" / \"fleece\" (case sensitive)): ");
+			u.printNormal("Input shirt material (\"cotton\" / \"fleece\" (case sensitive)): ");
 			material = u.nextLine();
 			if(!u.equalTo("cotton", "fleece", material)) {
 				u.printTab("Shirt material has to be \"cotton\" / \"fleece\"! (case sensitive)");
@@ -1027,7 +1032,7 @@ public class ProductView {
 		} while (!u.equalTo("cotton", "fleece", material));
 		
 		do {
-			u.printNormal("Input shirt sleeve length (shirt sleeve length has to be \"short\" / \"long\" (case insensitive)): ");
+			u.printNormal("Input shirt sleeve length (\"short\" / \"long\" (case insensitive)): ");
 			sleeveLength = u.nextLine();
 			if(!u.equalToIgnoreCase("short", "long", sleeveLength)) {
 				u.printTab("Shirt color has to be \"short\" / \"long\"! (case insensitive)");
@@ -1035,8 +1040,7 @@ public class ProductView {
 		} while (!u.equalToIgnoreCase("short", "long", sleeveLength));
 		
 		do {
-			//bug crew neck
-			u.printNormal("Input shirt collar type (shirt collar type has to be \"turtle neck\" / \"crew neck\" (case sensitive)): ");
+			u.printNormal("Input shirt collar type (\"turtle neck\" / \"crew neck\" (case sensitive)): ");
 			collarType = u.nextLine();
 			if(!u.equalTo("turtle neck", "crew neck", collarType)) {
 				u.printTab("Shirt collar type has to be \"turtle neck\" / \"crew neck\"! (case sensitive)");
@@ -1044,7 +1048,7 @@ public class ProductView {
 		} while (!u.equalTo("turtle neck", "crew neck", collarType));
 		
 		do {
-			u.printNormal("Input shirt fabric pattern (shirt fabric pattern has to be \"polka dot\" / \"checkered\" / \"strip\" (case insensitive)): ");
+			u.printNormal("Input shirt fabric pattern (\"polka dot\" / \"checkered\" / \"strip\" (case insensitive)): ");
 			fabricPattern = u.nextLine();
 			if(!u.equalToIgnoreCase("polka dot", "checkered", "strip", fabricPattern)) {
 				u.printTab("Shirt fabric pattern  has to be \"polka dot\" / \"checkered\" / \"strip\"! (case insensitive)");
@@ -1060,7 +1064,8 @@ public class ProductView {
 	public void addNovel() {
 		String author;
 		String genre;
-		int publicationYear;
+		String publicationYear;
+		int py =  -9;
 		String crimeType;
 		String detective;
 		int suspenseLevel = -9;
@@ -1068,7 +1073,7 @@ public class ProductView {
 		addProducts();
 		
 		do {
-			u.printNormal("Input author name (author name must starts with \"Mr. \" / \"Mrs. \" (case sensitive)): ");
+			u.printNormal("Input author name (starts with \"Mr. \" / \"Mrs. \" (case sensitive)): ");
 			author = u.nextLine();
 			if(!u.StartsWith("Mr. ", "Mrs. ", author)) {
 				u.printTab("Author name must starts with \"Mr. \" / \"Mrs. \" (case sensitive)!");
@@ -1076,7 +1081,7 @@ public class ProductView {
 		} while (!u.StartsWith("Mr. ", "Mrs. ", author));
 		
 		do {
-			u.printNormal("Input novel genre (novel genre name must be \"horror\" / \"thriller\" / \"mystery\" (case insensitive)): ");
+			u.printNormal("Input novel genre (\"horror\" / \"thriller\" / \"mystery\" (case insensitive)): ");
 			genre = u.nextLine();
 			if(!u.equalToIgnoreCase("horror", "thriller", "mystery", genre)) {
 				u.printTab("Genre name must be \"horror\" / \"thriller\" / \"mystery\" (case insensitive)");
@@ -1085,15 +1090,19 @@ public class ProductView {
 		
 		do {
 			u.printNormal("Input novel publication year (novel publication year 2005-2020): ");
-			publicationYear = u.nextInt();
-			u.nextLine();
-			if(!u.gtAndlt(2005, 2020, publicationYear)) {
-				u.printTab("Novel publication year has to be greater than 2005 and less than 2020!");
+			publicationYear = u.nextLine();
+			if(u.isInteger(publicationYear)) {
+				py = Integer.parseInt(publicationYear);
+				if(!u.gtAndlt(2005, 2020, py)) {
+					u.printTab("Novel publication year has to be greater than 2005 and less than 2020!");
+				}
+			}else {
+				u.printTab("Please input an integer!");
 			}
-		} while (!u.gtAndlt(2005, 2020, publicationYear));
+		} while (!u.gtAndlt(2005, 2020, py));
 		
 		do {
-			u.printNormal("Input novel crime type (novel crime type must be \"murder\" / \"heist\" / \"genocide\" (case insensitive)): ");
+			u.printNormal("Input novel crime type (\"murder\" / \"heist\" / \"genocide\" (case insensitive)): ");
 			crimeType = u.nextLine();
 			if(!u.equalToIgnoreCase("murder", "heist", "genocide", crimeType)) {
 				u.printTab("Novel crime type must be \"murder\" / \"heist\" / \"genocide\"");
@@ -1101,7 +1110,7 @@ public class ProductView {
 		} while (!u.equalToIgnoreCase("murder", "heist", "genocide", crimeType));
 		
 		do {
-			u.printNormal("Input detective name (detective name must starts with \"Mr. \" / \"Mrs. \" (case insensitive)): ");
+			u.printNormal("Input detective name (starts with \"Mr. \" / \"Mrs. \" (case insensitive)): ");
 			detective = u.nextLine();
 			if(!u.StartsWithIgnoreCase("Mr. ", "Mrs. ", detective)) {
 				u.printTab("Detective name must starts with \"Mr. \" / \"Mrs. \" (case sensitive)!");
@@ -1123,21 +1132,22 @@ public class ProductView {
 		} while (true);
 		
 		pc.refreshID();
-		Novel novel = new Novel("N"+pc.productID, name, price, description, author, genre, publicationYear, crimeType, detective, suspenseLevel);
+		Novel novel = new Novel("N"+pc.productID, name, price, description, author, genre, py, crimeType, detective, suspenseLevel);
 		pc.addProduct(novel);
 		productAdded();
 		
 	}
 
 	public Laptop updateLaptopPrompt() {
-		addProducts();
 		
 		float screenSize;
 		int RAM;
 		String processor;
-		int warrantyPeriod;
+		int warrantyPeriod = -9;
+		String wp;
 		String operatingSystem;
 		
+		addProducts();
 		do {
 			u.printNormal("Input laptop screen size (laptop screen size 12.5-18.5): ");
 			screenSize = u.nextFloat();
@@ -1157,7 +1167,7 @@ public class ProductView {
 		} while (!u.gtAndlt(4, 64, RAM));
 		
 		do {
-			u.printNormal("Input laptop processor (laptop processor has to be \"ontel\" or \"SLC\" (case sensitive)): ");
+			u.printNormal("Input laptop processor (\"ontel\" or \"SLC\" (case sensitive)): ");
 			processor = u.nextLine();
 			if(!u.equalTo("ontel", "SLC", processor)) {
 				u.printTab("Laptop RAM has to be \"ontel\" or \"SLC\"! (case sensitive)");
@@ -1165,16 +1175,20 @@ public class ProductView {
 		} while (!u.equalTo("ontel", "SLC", processor));
 		
 		do {
-			u.printNormal("Input laptop warranty period (laptop warranty period has to be greater than 1 or equal to and less than or equal to 5): ");
-			warrantyPeriod = u.nextInt();
-			u.nextLine();
-			if(!u.gtAndlt(1, 5, warrantyPeriod)) {
-				u.printTab("Laptop warranty period has to be greater than or equal to 1 and less than or equal to 5!");
+			u.printNormal("Input laptop warranty period (laptop warranty period 1-5): ");
+			wp =  u.nextLine();
+			if(u.isInteger(wp)) {
+				warrantyPeriod = Integer.parseInt(wp);
+				if(!u.gtAndlt(1, 5, warrantyPeriod)) {
+					u.printTab("Laptop warranty period has to be greater than or equal to 1 and less than or equal to 5!");
+				}
+			}else {
+				u.printTab("Please input an integer!");
 			}
 		} while (!u.gtAndlt(1, 5, warrantyPeriod));
 		
 		do {
-			u.printNormal("Input laptop operating system (laptop operating system has to be \"penguin\" or \"jendela\" (case insensitive)): ");
+			u.printNormal("Input laptop operating system (\"penguin\" / \"jendela\" (case insensitive)): ");
 			operatingSystem = u.nextLine();
 			if(!u.equalToIgnoreCase("penguin", "jendela", operatingSystem)) {
 				u.printTab("Laptop operating system has to be \"penguin\" or \"jendela\"! (case insensitive)");
@@ -1197,7 +1211,7 @@ public class ProductView {
 		addProducts(); 
 		
 		do {
-			u.printNormal("Input shirt color (shirt color has to be \"black\" / \"white\" / \"pink\" (case sensitive)): ");
+			u.printNormal("Input shirt color (\"black\" / \"white\" / \"pink\" (case sensitive)): ");
 			color = u.nextLine();
 			if(!u.equalTo("black", "white", "pink", color)) {
 				u.printTab("Shirt color has to be \"black\" / \"white\" / \"pink\"! (case sensitive)");
@@ -1205,7 +1219,7 @@ public class ProductView {
 		} while (!u.equalTo("black", "white", "pink", color));
 		
 		do {
-			u.printNormal("Input shirt size (shirt color has to be either \"s\" / \"m\" / \"l\" (case insensitive)): ");
+			u.printNormal("Input shirt size (\"s\" / \"m\" / \"l\" (case insensitive)): ");
 			size = u.nextLine();
 			if(!u.equalToIgnoreCase("s", "m", "l", size)) { 
 				u.printTab("Shirt color has to be \"s\" / \"m\" / \"l\"! (case insensitive)");
@@ -1213,7 +1227,7 @@ public class ProductView {
 		} while (!u.equalToIgnoreCase("s", "m", "l", size));
 		
 		do {
-			u.printNormal("Input shirt material (shirt material has to be either \"cotton\" / \"fleece\" (case sensitive)): ");
+			u.printNormal("Input shirt material (\"cotton\" / \"fleece\" (case sensitive)): ");
 			material = u.nextLine();
 			if(!u.equalTo("cotton", "fleece", material)) {
 				u.printTab("Shirt material has to be \"cotton\" / \"fleece\"! (case sensitive)");
@@ -1221,7 +1235,7 @@ public class ProductView {
 		} while (!u.equalTo("cotton", "fleece", material));
 		
 		do {
-			u.printNormal("Input shirt sleeve length (shirt sleeve length has to be either \"short\" / \"long\" (case insensitive)): ");
+			u.printNormal("Input shirt sleeve length (\"short\" / \"long\" (case insensitive)): ");
 			sleeveLength = u.nextLine();
 			if(!u.equalToIgnoreCase("short", "long", sleeveLength)) {
 				u.printTab("Shirt color has to be \"short\" / \"long\"! (case insensitive)");
@@ -1230,7 +1244,7 @@ public class ProductView {
 		
 		do {
 			//bug crew neck
-			u.printNormal("Input shirt collar type (shirt collar type has to be either \"turtle neck\" / \"crew neck\" (case sensitive)): ");
+			u.printNormal("Input shirt collar type (\"turtle neck\" / \"crew neck\" (case sensitive)): ");
 			collarType = u.nextLine();
 			if(!u.equalTo("turtle neck", "crew neck", collarType)) {
 				u.printTab("Shirt collar type has to be \"turtle neck\" / \"crew neck\"! (case sensitive)");
@@ -1238,10 +1252,10 @@ public class ProductView {
 		} while (!u.equalTo("turtle neck", "crew neck", collarType));
 		
 		do {
-			u.printNormal("Input shirt fabric pattern (shirt fabric pattern has to be either \"polka dot\" / \"checkered\" / \"strip\" (case insensitive)): ");
+			u.printNormal("Input shirt fabric pattern (\"polka dot\" / \"checkered\" / \"strip\" (case insensitive)): ");
 			fabricPattern = u.nextLine();
 			if(!u.equalToIgnoreCase("polka dot", "checkered", "strip", fabricPattern)) {
-				u.printTab("Shirt fabric pattern  has to be \"polka dot\" / \"checkered\" / \"strip\"! (case insensitive)");
+				u.printTab("Shirt fabric pattern has to be \"polka dot\" / \"checkered\" / \"strip\"! (case insensitive)");
 			}
 		} while (!u.equalToIgnoreCase("polka dot", "checkered", "strip", fabricPattern));
 		
@@ -1252,16 +1266,18 @@ public class ProductView {
 	public Novel updateNovelPrompt() {
 		String author;
 		String genre;
-		int publicationYear;
+		String publicationYear;
 		String crimeType;
 		String detective;
-		int suspenseLevel;
+		int suspenseLevel = -9;
+		String sp;
+		int py =  -9;
 		String tst;
 		
 		addProducts();
 		
 		do {
-			u.printNormal("Input author name (author name must starts with \"Mr. \" / \"Mrs. \" (case sensitive)): ");
+			u.printNormal("Input author name (starts with \"Mr. \" / \"Mrs. \" (case sensitive)): ");
 			author = u.nextLine();
 			if(!u.StartsWith("Mr. ", "Mrs. ", author)) {
 				u.printTab("Author name must starts with \"Mr. \" / \"Mrs. \" (case sensitive)!");
@@ -1269,7 +1285,7 @@ public class ProductView {
 		} while (!u.StartsWith("Mr. ", "Mrs. ", author));
 		
 		do {
-			u.printNormal("Input novel genre (novel genre name must be \"horror\" / \"thriller\" / \"mystery\" (case insensitive)): ");
+			u.printNormal("Input novel genre (\"horror\" / \"thriller\" / \"mystery\" (case insensitive)): ");
 			genre = u.nextLine();
 			if(!u.equalToIgnoreCase("horror", "thriller", "mystery", genre)) {
 				u.printTab("Genre name must be \"horror\" / \"thriller\" / \"mystery\" (case insensitive)");
@@ -1278,15 +1294,19 @@ public class ProductView {
 		
 		do {
 			u.printNormal("Input novel publication year (novel publication year 2005-2020): ");
-			publicationYear = u.nextInt();
-			u.nextLine();
-			if(!u.gtAndlt(2005, 2020, publicationYear)) {
-				u.printTab("Novel publication year has to be greater than 2005 and less than 2020!");
+			publicationYear = u.nextLine();
+			if(u.isInteger(publicationYear)) {
+				py = Integer.parseInt(publicationYear);
+				if(!u.gtAndlt(2005, 2020, py)) {
+					u.printTab("Novel publication year has to be greater than 2005 and less than 2020!");
+				}
+			}else {
+				u.printTab("Please input an integer!");
 			}
-		} while (!u.gtAndlt(2005, 2020, publicationYear));
+		} while (!u.gtAndlt(2005, 2020, py));
 		
 		do {
-			u.printNormal("Input novel crime type (novel crime type must be \"murder\" / \"heist\" / \"genocide\" (case insensitive)): ");
+			u.printNormal("Input novel crime type (\"murder\" / \"heist\" / \"genocide\" (case insensitive)): ");
 			crimeType = u.nextLine();
 			if(!u.equalToIgnoreCase("murder", "heist", "genocide", crimeType)) {
 				u.printTab("Novel crime type must be \"murder\" / \"heist\" / \"genocide\"");
@@ -1294,7 +1314,7 @@ public class ProductView {
 		} while (!u.equalToIgnoreCase("murder", "heist", "genocide", crimeType));
 		
 		do {
-			u.printNormal("Input detective name (detective name must starts with \"Mr. \" / \"Mrs. \" (case insensitive)): ");
+			u.printNormal("Input detective name (starts with \"Mr. \" / \"Mrs. \" (case insensitive)): ");
 			detective = u.nextLine();
 			if(!u.StartsWithIgnoreCase("Mr. ", "Mrs. ", detective)) {
 				u.printTab("Detective name must starts with \"Mr. \" / \"Mrs. \" (case sensitive)!");
@@ -1316,7 +1336,7 @@ public class ProductView {
 			
 		} while (true);
 		
-		Novel novel = new Novel("0", name, price, description, author, genre, publicationYear, crimeType, detective, suspenseLevel);
+		Novel novel = new Novel("0", name, price, description, author, genre, py, crimeType, detective, suspenseLevel);
 		return novel;
 	}
 	
