@@ -799,7 +799,7 @@ public class ProductView {
 			return;
 		}else {
 			do {
-				viewShirt();
+				viewShrt();
 				opt = deletePrompt("shirt");
 				toDel = pc.searchProduct(opt);
 				if(opt.equals("0")) {
@@ -816,6 +816,7 @@ public class ProductView {
 							u.printTab("Shirt deleted succesfully!");
 							u.pressEnter();
 							pc.deleteProduct(opt);
+							uc.rewriteFile(Engine.users);
 							return;
 						}else if(conf.equals("N")) {
 							return;
@@ -853,6 +854,7 @@ public class ProductView {
 							u.printTab("Novel deleted succesfully!");
 							u.pressEnter();
 							pc.deleteProduct(opt);
+							uc.rewriteFile(Engine.users);
 							return;
 						}else if(conf.equals("N")) {
 							return;
