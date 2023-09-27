@@ -237,5 +237,12 @@ public class UserController {
 		Engine.currUser.getCart().clear();
 		Engine.currUser.getProductQuantity().clear();
 	}
+	
+	public boolean productIsInCart(String ID) {
+		for (Product p : Engine.currUser.getCart()) {
+			if(p.getProductID().equals(ID)) return true;
+		}
+		return false;
+	}
 
 }

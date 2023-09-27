@@ -216,9 +216,14 @@ public class ProductView {
 			}else {
 				p = pc.searchProduct(id);
 			}
-			
 			if(p != null) {
-				viewProductDetailCart(p);
+				if(uc.productIsInCart(id)) {
+//					here
+					u.printTab("The product is already in your cart!");
+					u.pressEnter();
+				}else {
+					viewProductDetailCart(p);					
+				}
 			}else {
 				u.printTab("Please input the right "+type+" ID!");
 				u.pressEnter();
