@@ -178,8 +178,12 @@ public class UserController {
                 			}
                 			
                 			for (int i = 0; i < cart.length(); i += 2) {
-                				String id = cart.charAt(i)+cart.charAt(i+1)+"";
+                				String a = Character.toString(cart.charAt(i));
+            					String b = Character.toString(cart.charAt(i+1));
+            					String id = a+b;
+                				System.out.println("id: "+id);
 								Product prod = pc.searchProduct(id);
+								System.out.println("name: "+prod.getName());
 								p.add(prod);
 							}
                 			Engine.users.add(new Regular(username, password, point, p, q, loyaltyPoint));
@@ -193,6 +197,7 @@ public class UserController {
             					String b = Character.toString(cart.charAt(i+1));
             					String id = a+b;
 								Product prod = pc.searchProduct(id);
+								System.out.println("name: "+prod.getName());
 								p.add(prod);
 							}
             				
